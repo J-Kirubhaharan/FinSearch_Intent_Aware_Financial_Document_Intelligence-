@@ -1,0 +1,8 @@
+{
+  "model": "BM25 Baseline",
+  "dataset": "FiQA Test",
+  "num_queries": 648,
+  "NDCG@10": 0.2169,
+  "MRR": 0.2706,
+  "Recall@10": 0.2784
+}
