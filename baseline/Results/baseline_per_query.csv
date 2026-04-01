@@ -237,34 +237,34 @@ query_id,query,NDCG@10,MRR,Recall@10
 7441,"Since many brokers disallow investors from shorting sub-$5 stocks, why don't all companies split their stock until it is sub-$5",0.2346,0.3333,0.3333
 4007,What is a reasonable salary for the owner and sole member of a small S-Corp?,0.2346,0.3333,0.3333
 2010,Paypal website donations without being a charity,0.2346,0.3333,0.3333
+776,"Can saving/investing 15% of your income starting age 25, likely make you a millionaire?",0.2201,1.0,0.0833
 6131,Is it ever a good idea to close credit cards?,0.2201,1.0,0.0833
 2348,Why can't you just have someone invest for you and split the profits (and losses) with him?,0.2201,1.0,0.0667
-776,"Can saving/investing 15% of your income starting age 25, likely make you a millionaire?",0.2201,1.0,0.0833
-2713,Physical Checks - Mailing,0.2184,0.1667,0.5
+9381,Trade? Buy and hold? Or both?,0.2184,0.1667,0.5
 5064,How much should a graduate student attempt to save?,0.2184,0.1667,0.5
 5134,Why does Yahoo Finance's data for a Vanguard fund's dividend per share not match the info from Vanguard?,0.2184,0.1667,0.5
+2713,Physical Checks - Mailing,0.2184,0.1667,0.5
 6611,How does Vanguard determine the optimal asset allocation for their Target Retirement Funds?,0.2184,0.1667,0.5
-9381,Trade? Buy and hold? Or both?,0.2184,0.1667,0.5
-4844,"How to read bond yield quotes? What do the time, coupon, price, yield, and time mean?",0.2044,0.1429,0.5
 9060,Buying puts without owning underlying,0.2044,0.1429,0.5
+4844,"How to read bond yield quotes? What do the time, coupon, price, yield, and time mean?",0.2044,0.1429,0.5
 3500,Why invest in becoming a landlord?,0.2032,0.1667,0.3333
 7705,Why would I pick a specific ETF over an equivalent Mutual Fund?,0.2021,0.25,0.3333
 7533,Investing tax (savings),0.1934,0.125,0.5
-6715,What does it mean if “IPOs - normally are sold with an `underwriting discount` (a built in commission)”,0.1934,0.125,0.5
 1812,splitting a joint mortgage - one owner in home,0.1934,0.125,0.5
-4084,What industries soar when oil prices go up?,0.1846,0.1111,0.5
+6715,What does it mean if “IPOs - normally are sold with an `underwriting discount` (a built in commission)”,0.1934,0.125,0.5
 7071,ESPP strategy - Sell right away or hold?,0.1846,0.1111,0.5
-6901,Rules for Broker Behavior with Covered Calls,0.1846,0.1111,0.5
+4084,What industries soar when oil prices go up?,0.1846,0.1111,0.5
 10558,Investment strategy for 401k when rolling over soon,0.1846,0.1111,0.5
+6901,Rules for Broker Behavior with Covered Calls,0.1846,0.1111,0.5
 4615,Are solar cell panels and wind mills worth the money?,0.1829,0.125,0.3333
 8970,"What's the difference, if any, between stock appreciation and compound interest?",0.1772,0.1,0.5
 6835,Are bond ETF capital gains taxed similar to stock or stock funds if held for more than 1 year?,0.1772,0.1,0.5
-3091,Am I considered in debt if I pay a mortgage?,0.1734,0.5,0.1429
 2790,Should I pay more than 20% down on a home?,0.1734,0.5,0.1429
+3091,Am I considered in debt if I pay a mortgage?,0.1734,0.5,0.1429
 5460,Paying off a loan with a loan to get a better interest rate,0.1696,0.3333,0.2
 4019,How and Should I Invest (As a college 18 year old with minimal living expenses)?,0.1696,0.3333,0.2
-4499,Is investing exlusively in a small-cap index fund a wise investment?,0.1672,0.1667,0.3333
 9808,Selling To Close,0.1672,0.1667,0.3333
+4499,Is investing exlusively in a small-cap index fund a wise investment?,0.1672,0.1667,0.3333
 5410,Dealership made me the secondary owner to my own car,0.1564,0.1429,0.3333
 10447,Is there an advantage to a traditional but non-deductable IRA over a taxable account? [duplicate],0.1564,0.1429,0.3333
 3683,Can I trust the Motley Fool?,0.1513,0.3333,0.1667
@@ -274,8 +274,8 @@ query_id,query,NDCG@10,MRR,Recall@10
 6262,Help required on estimating SSA benefit amounts,0.148,0.125,0.3333
 3177,Vanguard ETF vs mutual fund,0.148,0.125,0.3333
 10639,Short term parking of a large inheritance?,0.1461,0.25,0.2
-2994,Work on the side for my wife's company,0.1357,0.1,0.3333
 9617,What differentiates index funds and ETFs?,0.1357,0.1,0.3333
+2994,Work on the side for my wife's company,0.1357,0.1,0.3333
 3264,Pros and Cons of Interest Only Loans,0.1301,0.1429,0.25
 1871,Is there any US bank that does not charge for incoming wire transfers?,0.1232,0.125,0.25
 5356,Historical stock prices: Where to find free / low cost data for offline analysis?,0.1208,0.1667,0.2
@@ -287,363 +287,363 @@ query_id,query,NDCG@10,MRR,Recall@10
 3404,"In US, is it a good idea to hire a tax consultant for doing taxes?",0.0916,0.1429,0.1429
 3503,Is there any instance where less leverage will get you a better return on a rental property?,0.0867,0.125,0.1429
 5853,Paying Off Principal of Home vs. Investing In Mutual Fund,0.0843,0.1429,0.125
-2568,How to pay with cash when car shopping?,0.0827,0.1111,0.1429
 4605,"If the U.S. defaults on its debt, what will happen to my bank money?",0.0827,0.1111,0.1429
+2568,How to pay with cash when car shopping?,0.0827,0.1111,0.1429
 11039,Pay off credit card debt or earn employer 401(k) match?,0.0761,0.1111,0.125
-10482,Rollover into bond fund to do dollar cost averaging [duplicate],0.0,0.0,0.0
-9164,Bonds vs equities: crash theory,0.0,0.0,0.0
-4600,"Why government bonds fluctuate so much, even though interest rates don't change that often?",0.0,0.0,0.0
-8034,What is the average cost of a portfolio on a trading site?,0.0,0.0,0.0
-3859,Buying an investment property in Australia - what are the advantages and disadvantages of building a house vs buying an existing one?,0.0,0.0,0.0
-6647,What is meant by “priced in”?,0.0,0.0,0.0
-8247,Tax on Stocks or ETF's,0.0,0.0,0.0
+8779,How does a defined contribution plan work,0.0,0.0,0.0
+766,Will the ex-homeowner still owe money after a foreclosure?,0.0,0.0,0.0
+4031,28 years old and just inherited large amount of money and real estate - unsure what to do with it,0.0,0.0,0.0
+7377,What type of returns Vanguard is quoting?,0.0,0.0,0.0
+885,How long do credit cards keep working after you disappear?,0.0,0.0,0.0
+6252,"Is this mortgage advice good, or is it hooey?",0.0,0.0,0.0
+5030,Why pay for end-of-day historical prices?,0.0,0.0,0.0
+6410,Will an ETF immediately reflect a reconstitution of underlying index,0.0,0.0,0.0
+7145,Are there “buy and hold” passively managed funds?,0.0,0.0,0.0
+3767,What should I be doing to protect myself from identity theft?,0.0,0.0,0.0
+2498,How do I calculate tax liability on the turnover of a small vendor?,0.0,0.0,0.0
+7622,Best way to pay off debt?,0.0,0.0,0.0
+10267,How should I prepare for the next financial crisis?,0.0,0.0,0.0
+7463,Pros/cons of borrowing money using a mortgage loan and investing it in a low-fee index fund?,0.0,0.0,0.0
+6644,How to know precisely when a SWIFT is issued by a bank?,0.0,0.0,0.0
+6629,Tax treatment of a boxed trade?,0.0,0.0,0.0
+7345,What do these numbers mean? (futures),0.0,0.0,0.0
+7925,Can I sell a stock immediately?,0.0,0.0,0.0
+5369,Paying for things on credit and immediately paying them off: any help for credit rating?,0.0,0.0,0.0
+4409,My friend wants to put my name down for a house he's buying. What risks would I be taking?,0.0,0.0,0.0
+4153,How do I invest in emerging markets,0.0,0.0,0.0
+3612,How can I buy and sell the same stock on the same day?,0.0,0.0,0.0
+7758,Bid/ask spreads for index funds,0.0,0.0,0.0
+7592,few question about debit credit and liabilities,0.0,0.0,0.0
+8202,What accounted for DXJR's huge drop in stock price?,0.0,0.0,0.0
+1310,Is is possible to take a mortgage using Bitcoin as collateral?,0.0,0.0,0.0
+5374,What were the main causes of the spike and drop of DRYS's stock price?,0.0,0.0,0.0
+2590,Are non-residents or foreigners permitted to buy or own shares of UK companies?,0.0,0.0,0.0
+859,"Any reason to keep around my account with my old, 'big' bank?",0.0,0.0,0.0
+6121,What are my best options if I don't have a lot of credit lines for housing loans?,0.0,0.0,0.0
+2486,"Is working on a W2 basis, with benefits paid to me, a good idea?",0.0,0.0,0.0
+1230,How does Walmart account their expired food,0.0,0.0,0.0
+7329,Does Implied Volatilty factor in all known future events?,0.0,0.0,0.0
+7295,Selling non-dividend for dividend stocks,0.0,0.0,0.0
+3759,Simplifying money management,0.0,0.0,0.0
+8013,Frequency of investments to maximise returns (and minimise fees),0.0,0.0,0.0
+1920,Clarification on student expenses - To file the tax for the next year,0.0,0.0,0.0
+1889,Reporting financial gains from my online store,0.0,0.0,0.0
+4484,Has the likelihood of getting a lower interest rate by calling & asking been reduced by recent credit card regulations?,0.0,0.0,0.0
+3125,"Claiming mileage allowances, what are the rules/guidelines?",0.0,0.0,0.0
+6142,How does stabilization work during an IPO?,0.0,0.0,0.0
+9548,"How do I research, analyze, and choose the right mutual fund for a roth ira?",0.0,0.0,0.0
+5021,"Is there a more flexible stock chart service, e.g. permitting choice of colours when comparing multiple stocks?",0.0,0.0,0.0
+9824,Where can end-of-day data be downloaded for corporate bonds?,0.0,0.0,0.0
+5710,Bucketing investments to track individual growths,0.0,0.0,0.0
+9633,Video recommendation for stock market education,0.0,0.0,0.0
+8116,A-B-C Class Shares: What's the difference?,0.0,0.0,0.0
+929,Freelancer: Should I start a second bank account?,0.0,0.0,0.0
+2676,Tax question about selling a car,0.0,0.0,0.0
+9403,Abundance of Cash - What should I do?,0.0,0.0,0.0
+2460,What are the consequences of not respecting a notice period when leaving a job?,0.0,0.0,0.0
+8005,Difference between Vanguard sp500 UCITS and Vanguard sp500,0.0,0.0,0.0
+8937,“In-the-Money” vs “Out-of-the-Money” Call Options,0.0,0.0,0.0
+549,Where to request ACH Direct DEBIT of funds from MY OWN personal bank account?,0.0,0.0,0.0
+8982,Are Exchange-Traded Funds (ETFs) less safe than regular mutual funds?,0.0,0.0,0.0
+7218,What margin is required to initiate and maintain a short sale,0.0,0.0,0.0
+4394,"Transfer $50k to another person's account (in California, USA)",0.0,0.0,0.0
+4289,Does the currency exchange rate contain any additional information at all?,0.0,0.0,0.0
+6467,Advice on strategy for when to sell,0.0,0.0,0.0
+503,Privacy preferences on creditworthiness data,0.0,0.0,0.0
+98,"How can I make $250,000.00 from trading/investing/business within 5 years?",0.0,0.0,0.0
+8121,Can I calculate stock value with Williams%R if I know the last set?,0.0,0.0,0.0
+10246,Understanding the T + 3 settlement days rule,0.0,0.0,0.0
+7206,Who Bought A Large Number Of Shares?,0.0,0.0,0.0
+939,How to correct a tax return filed electronically and already approved?,0.0,0.0,0.0
+7702,Bond ETFs vs actual bonds,0.0,0.0,0.0
+4846,Is there anything comparable to/resembling CNN's Fear and Greed Index?,0.0,0.0,0.0
+4962,Net Cash Flows from Selling the Bond and Investing,0.0,0.0,0.0
+26,Applying for and receiving business credit,0.0,0.0,0.0
+5763,What is the best way to get a “rough” home appraisal prior to starting the refinance process?,0.0,0.0,0.0
+3490,Tax Witholding for Stock Sale,0.0,0.0,0.0
+9245,Stock Options for a company bought out in cash and stock,0.0,0.0,0.0
+9296,Why would Two ETFs tracking Identical Indexes Produce different Returns?,0.0,0.0,0.0
+3369,Why should one only contribute up to the employer's match in a 401(k)?,0.0,0.0,0.0
+988,Where should I invest my savings?,0.0,0.0,0.0
+8834,Pros/Cons of Buying Discounted Company Stock,0.0,0.0,0.0
+813,Income Tax and Investments,0.0,0.0,0.0
+5511,Pay off car loan entirely or leave $1 until the end of the loan period?,0.0,0.0,0.0
+6746,What happens if stock purchased on margin plummets below what I have in the brokerage?,0.0,0.0,0.0
+2395,Freelance site with lowest commission fees?,0.0,0.0,0.0
+2856,How can I cash out a check internationally?,0.0,0.0,0.0
+2398,Frustrated Landlord,0.0,0.0,0.0
+4678,"Finance, Cash or Lease?",0.0,0.0,0.0
+8275,Buy/Selling prices at the stock exchange represent someone Selling/Buying at that price?,0.0,0.0,0.0
+4955,How to calculate the value of a bond that is priced to yield X%,0.0,0.0,0.0
+2118,What happened in Argentina in 2001 bank sector? did the banks closed? all or some?,0.0,0.0,0.0
+529,Sole proprietorship or LLC?,0.0,0.0,0.0
+9391,Should I replace bonds in a passive investment strategy,0.0,0.0,0.0
+2088,How would I go about selling the stock of a privately held company?,0.0,0.0,0.0
+5090,Should I take a student loan to pursue my undergraduate studies in France?,0.0,0.0,0.0
+2443,What are some way to transfer money from Hong Kong to India on a monthly basis?,0.0,0.0,0.0
+9871,What should I do with the 50k I have sitting in a European bank?,0.0,0.0,0.0
+5427,How do auto-loan payments factor into taxes for cars that are solely used by dependent(s)?,0.0,0.0,0.0
+5616,How and where do companies publish financial reports?,0.0,0.0,0.0
+2513,How does revenue shared with someone else go into my tax return in Canada?,0.0,0.0,0.0
+8635,Is there any flaw in this investment scheme?,0.0,0.0,0.0
+10136,How to minimise the risk of a reduction in purchase power in case of Brexit for money held in a bank account?,0.0,0.0,0.0
+853,What will my taxes be as self employed?,0.0,0.0,0.0
+2891,May I claim money earned but not received in 2012,0.0,0.0,0.0
+4179,Why could the serious financial woes of some EU member states lead to the end of the Euro?,0.0,0.0,0.0
+559,"Challenged an apparently bogus credit card charge, what happens now?",0.0,0.0,0.0
+3995,"I have more than $250,000 in a US Bank account… mistake?",0.0,0.0,0.0
+8512,Is it possible to transfer stock I already own into my Roth IRA without having to sell the stock?,0.0,0.0,0.0
+7879,Any Tips on How to Get the Highest Returns Within 4 Months by Investing in Stocks?,0.0,0.0,0.0
+3822,How to change a large quantity of U.S. dollars into Euros?,0.0,0.0,0.0
+4464,Are Australian mutual fund fees large compared to US?,0.0,0.0,0.0
+3625,What should I do with my paper financial documents?,0.0,0.0,0.0
+5808,How do you calculate return on investment for a share of stock?,0.0,0.0,0.0
+8947,Can a Roth IRA be used as a savings account?,0.0,0.0,0.0
+3569,Funds in closed bank account have gone to the government,0.0,0.0,0.0
+9275,Do I have to pay a capital gains tax if I rebuy the same stock within 30 days?,0.0,0.0,0.0
+4640,What can my relatives do to minimize their out of pocket expenses on their fathers estate,0.0,0.0,0.0
+2465,Can capital expenses for volunteer purposes be deducted from income?,0.0,0.0,0.0
+1074,How common is “pass-through” health insurance?,0.0,0.0,0.0
+4105,As an investor what are side effects of Quantitative Easing in US and in EU?,0.0,0.0,0.0
+5585,Is there any site you can find out about the 'bonus features' of credit cards?,0.0,0.0,0.0
+3829,Are all VISA cards connected with bank accounts?,0.0,0.0,0.0
+6683,Who are the sellers for the new public stocks?,0.0,0.0,0.0
+10628,"What happens with the “long” buyer of a stock when somebody else's short fails (that is, unlimited loss bankrupts short seller)",0.0,0.0,0.0
+7098,Can another tax loss be used to offset capital gains taxes? How does it work?,0.0,0.0,0.0
+4188,Why is the stock market rising after Trump's attack on the TPP?,0.0,0.0,0.0
+4433,When should you use an actively managed mutual fund in a 401k?,0.0,0.0,0.0
+8959,How is the opening-day price of a stock decided?,0.0,0.0,0.0
+5206,Is it a good idea to get an unsecured loan to pay off a credit card that won't lower a high rate?,0.0,0.0,0.0
+1948,Which colors can one use to fill out a check in the US?,0.0,0.0,0.0
+4500,What to ask Warren Buffet at the Berkshire Hathaway shareholder meeting?,0.0,0.0,0.0
+5464,Resources on Buying Rental Properties,0.0,0.0,0.0
+6907,Nominal value of shares,0.0,0.0,0.0
+4942,find stock composition of a publicly traded fund,0.0,0.0,0.0
+3909,How to rescue my money from negative interest?,0.0,0.0,0.0
+7205,Is it possible to see option prices from the past?,0.0,0.0,0.0
+5196,I might use a credit card convenience check. What should I consider?,0.0,0.0,0.0
+106,What approaches are there for pricing a small business?,0.0,0.0,0.0
+10213,Looking for good investment vehicle for seasonal work and savings,0.0,0.0,0.0
+1306,"I made an investment with a company that contacted me, was it safe?",0.0,0.0,0.0
+4205,How and why does the exchange rate of a currency change almost everyday?,0.0,0.0,0.0
+7754,Inverse Relationship between Volatility and Beta,0.0,0.0,0.0
+4756,What is the formula for the Tesla Finance calculation?,0.0,0.0,0.0
+6814,Selling Stock - All or Nothing?,0.0,0.0,0.0
+2549,How to graph the market year over year? for example Dow Jones Index,0.0,0.0,0.0
+945,Paid by an American company but working from France: where should I pay taxes?,0.0,0.0,0.0
+6612,"If I have a lot of debt and the housing market is rising, should I rent and slowly pay off my debt or buy and roll the debt into a mortgage?",0.0,0.0,0.0
+5940,How does investment into a private company work?,0.0,0.0,0.0
+10137,F-1 student investing in foreign markets,0.0,0.0,0.0
+7674,Choosing the limit when making a limit order?,0.0,0.0,0.0
+5231,Where to find CSV or JSON data for publicly traded companies listed with their IPO date?,0.0,0.0,0.0
+10547,How much do brokerages pay exchanges per trade?,0.0,0.0,0.0
+90,Filing personal with 1099s versus business s-corp?,0.0,0.0,0.0
+9598,How do index funds actually work?,0.0,0.0,0.0
+2051,Where to find the 5 or 10 year returns for a mutual fund?,0.0,0.0,0.0
+3771,Best way to buy Japanese yen for travel?,0.0,0.0,0.0
+9108,"Starting an investment portfolio with Rs 5,000/-",0.0,0.0,0.0
+3530,How to exclude stock from mutual fund,0.0,0.0,0.0
+42,What are the ins/outs of writing equipment purchases off as business expenses in a home based business?,0.0,0.0,0.0
+9929,"Investing in commodities, pros and cons?",0.0,0.0,0.0
+4641,Where should I park my rainy-day / emergency fund?,0.0,0.0,0.0
+8017,Purchasing ETFs when (pretty much) everything else is maxed out,0.0,0.0,0.0
+687,Online tool to connect to my bank account and tell me what I spend in different categories?,0.0,0.0,0.0
+7017,Basic Algorithmic Trading Strategy,0.0,0.0,0.0
+5906,0% APR first 12 months on new credit card. Can I exceed that 30% rule of thumb and not hurt my credit score?,0.0,0.0,0.0
+6909,Why do stocks priced above $2.00 on the ASX sometimes move in $0.005 increments?,0.0,0.0,0.0
+5185,Invest in low cost small cap index funds when saving towards retirement?,0.0,0.0,0.0
+5172,does interest payment on loan stay the same if I pay early,0.0,0.0,0.0
+1322,Is this follow-up after a car crash a potential scam?,0.0,0.0,0.0
+2076,Can vet / veterinary bills be considered deductions (tax-deductible) for Income Tax purposes [Canada]?,0.0,0.0,0.0
+7747,What happens to bonds values when interest rates rise? [duplicate],0.0,0.0,0.0
+2384,Tax: 1099 paper form,0.0,0.0,0.0
+6862,Canada discount stock brokers: Interactive Brokers vs. Questrade?,0.0,0.0,0.0
+56,Can a entrepreneur hire a self-employed business owner?,0.0,0.0,0.0
+8934,Dividend yield for multiple years?,0.0,0.0,0.0
+585,Following an investment guru a good idea?,0.0,0.0,0.0
+701,What are the ins/outs of writing-off part of one's rent for working at home?,0.0,0.0,0.0
+4775,Should I finance a car to build credit for a mortgage next year?,0.0,0.0,0.0
+6562,"Cheapest way to “wire” money in an Australian bank account to a person in England, while I'm in Laos?",0.0,0.0,0.0
+5402,Is it impossible to get a home loan with a poor credit history after a divorce?,0.0,0.0,0.0
+6959,What is the term for the quantity (high price minus low price) for a stock?,0.0,0.0,0.0
+7513,Where are Bogleheadian World ETFs or Index funds?,0.0,0.0,0.0
+7431,Pay off mortgage or invest in high value saving account,0.0,0.0,0.0
+1150,How are the best way to make and save money at 22 years old,0.0,0.0,0.0
+4125,Alternative means of salary for my employees,0.0,0.0,0.0
+3067,Should I make extra payments to my under water mortgage or increase my savings?,0.0,0.0,0.0
+9882,Money-market or cash-type ETFs for foreigners with U.S brokerage account,0.0,0.0,0.0
+3451,Should you keep your stocks if you are too late to sell?,0.0,0.0,0.0
+4804,How do financial services aimed at women differ from conventional services?,0.0,0.0,0.0
+858,Is it bad practice to invest in stocks that fluctuate by single points throughout the day?,0.0,0.0,0.0
+7992,What type of pension should I get?,0.0,0.0,0.0
+753,Taxes due for hobbyist Group Buy,0.0,0.0,0.0
+11088,Am I required to have a lawyer create / oversee creation of my will?,0.0,0.0,0.0
+4767,New car: buy with cash or 0% financing,0.0,0.0,0.0
+1297,Why aren't there solutions for electronic itemized receipt for retail in-store purchases?,0.0,0.0,0.0
+4465,How to donate to charity that will make a difference?,0.0,0.0,0.0
+957,How can I withdraw money from my LLC?,0.0,0.0,0.0
+3888,Why I can't view my debit card pre-authorized amounts?,0.0,0.0,0.0
+4813,Dealer Financing Fell Through on vehicle purchase: Scam?,0.0,0.0,0.0
+7326,Do brokers execute every trade on the exchange?,0.0,0.0,0.0
+10039,Do individual investors use Google to obtain stock quotes?,0.0,0.0,0.0
+10827,How much should I be contributing to my 401k given my employer's contribution?,0.0,0.0,0.0
+1530,"What is the proper way to report additional income for taxes (specifically, Android development)?",0.0,0.0,0.0
+5534,How does “taking over payments” work?,0.0,0.0,0.0
+4827,Are all financial advisors compensated in the same way?,0.0,0.0,0.0
+2903,How should I file my taxes as a contractor?,0.0,0.0,0.0
+7509,Investment Portfolio Setup for beginner,0.0,0.0,0.0
+715,what would you do with $100K saving?,0.0,0.0,0.0
+9771,Is there any emprical research done on 'adding to a loser',0.0,0.0,0.0
+4539,How should I save money if the real interest rate (after inflation) is negative?,0.0,0.0,0.0
+849,Accounting for reimbursements that exceed actual expenses,0.0,0.0,0.0
+3049,How to calculate my estimated taxes. 1099 MISC + Self Employment,0.0,0.0,0.0
+6890,Where does the money go when I buy stocks?,0.0,0.0,0.0
+1321,"Are social media accounts (e.g. YouTube, Twitter, Instagram, etc.) considered assets?",0.0,0.0,0.0
+1783,Freelancing Tax implication,0.0,0.0,0.0
+3189,Diversify my retirement investments with a Roth IRA,0.0,0.0,0.0
+4142,Relation between inflation rates and interest rates,0.0,0.0,0.0
+4999,Looking for a good source for Financial Statements,0.0,0.0,0.0
+2964,Unmarried Couple Splitting up with Joint Ownership of Home,0.0,0.0,0.0
+10912,Forex independent investments,0.0,0.0,0.0
+8974,"As a 22-year-old, how risky should I be with my 401(k) investments?",0.0,0.0,0.0
+3534,Why do dishonour fees exist?,0.0,0.0,0.0
+2551,How to find cheaper alternatives to a traditional home telephone line?,0.0,0.0,0.0
+7594,Converting annual interbank rates into monthly rates,0.0,0.0,0.0
 8855,How do i get into investing stocks [duplicate],0.0,0.0,0.0
 10462,"Is it okay to be married, 30 years old and have no retirement?",0.0,0.0,0.0
-9291,Are there any consequences for investing in Vanguard's Admiral Shares funds instead of ETF's in a Roth IRA?,0.0,0.0,0.0
-8532,What do these options trading terms mean?,0.0,0.0,0.0
-1824,Is there a way to open a U.S. bank account for my LLC remotely?,0.0,0.0,0.0
-5054,How to stress test an investment plan?,0.0,0.0,0.0
-1159,what is the best way to do a freelancing job over the summer for a student,0.0,0.0,0.0
-68,Intentions of Deductible Amount for Small Business,0.0,0.0,0.0
-7269,How do I track investment performance in Quicken across rollovers?,0.0,0.0,0.0
-9701,How to bet against the London housing market?,0.0,0.0,0.0
+5503,Tax considerations for selling a property below appraised value to family?,0.0,0.0,0.0
+9164,Bonds vs equities: crash theory,0.0,0.0,0.0
+6647,What is meant by “priced in”?,0.0,0.0,0.0
+7803,Can the Delta be used to calculate the option premium given a certain target?,0.0,0.0,0.0
+3859,Buying an investment property in Australia - what are the advantages and disadvantages of building a house vs buying an existing one?,0.0,0.0,0.0
+10975,How to contribute to Roth IRA when income is at the maximum limit & you have employer-sponsored 401k plans?,0.0,0.0,0.0
+4102,How can I determine if my rate of return is “good” for the market I am in?,0.0,0.0,0.0
+504,Have plenty of cash flow but bad credit,0.0,0.0,0.0
+7880,Are there index tracking funds that avoid the “buy high - sell low” problem?,0.0,0.0,0.0
+6395,Option settlement for calendar spreads,0.0,0.0,0.0
+4011,How can I deal with a spouse who compulsively spends?,0.0,0.0,0.0
+34,401k Transfer After Business Closure,0.0,0.0,0.0
+9126,Short an option - random assignment?,0.0,0.0,0.0
 6199,How can all these countries owe so much money?  Why & where did they borrow it from?,0.0,0.0,0.0
-7594,Converting annual interbank rates into monthly rates,0.0,0.0,0.0
+9701,How to bet against the London housing market?,0.0,0.0,0.0
+7269,How do I track investment performance in Quicken across rollovers?,0.0,0.0,0.0
+68,Intentions of Deductible Amount for Small Business,0.0,0.0,0.0
+1159,what is the best way to do a freelancing job over the summer for a student,0.0,0.0,0.0
+5054,How to stress test an investment plan?,0.0,0.0,0.0
+1824,Is there a way to open a U.S. bank account for my LLC remotely?,0.0,0.0,0.0
+8532,What do these options trading terms mean?,0.0,0.0,0.0
+9291,Are there any consequences for investing in Vanguard's Admiral Shares funds instead of ETF's in a Roth IRA?,0.0,0.0,0.0
 5061,What fiscal scrutiny can be expected from IRS in early retirement?,0.0,0.0,0.0
 5178,Formula that predicts whether one is better off investing or paying down debt,0.0,0.0,0.0
-34,401k Transfer After Business Closure,0.0,0.0,0.0
-4011,How can I deal with a spouse who compulsively spends?,0.0,0.0,0.0
-6395,Option settlement for calendar spreads,0.0,0.0,0.0
-7880,Are there index tracking funds that avoid the “buy high - sell low” problem?,0.0,0.0,0.0
 4523,What should I do with my $25k to invest as a 20 years old?,0.0,0.0,0.0
-504,Have plenty of cash flow but bad credit,0.0,0.0,0.0
-10975,How to contribute to Roth IRA when income is at the maximum limit & you have employer-sponsored 401k plans?,0.0,0.0,0.0
-9126,Short an option - random assignment?,0.0,0.0,0.0
-957,How can I withdraw money from my LLC?,0.0,0.0,0.0
-1297,Why aren't there solutions for electronic itemized receipt for retail in-store purchases?,0.0,0.0,0.0
-4767,New car: buy with cash or 0% financing,0.0,0.0,0.0
-11088,Am I required to have a lawyer create / oversee creation of my will?,0.0,0.0,0.0
-7992,What type of pension should I get?,0.0,0.0,0.0
-858,Is it bad practice to invest in stocks that fluctuate by single points throughout the day?,0.0,0.0,0.0
-9882,Money-market or cash-type ETFs for foreigners with U.S brokerage account,0.0,0.0,0.0
-3067,Should I make extra payments to my under water mortgage or increase my savings?,0.0,0.0,0.0
-4125,Alternative means of salary for my employees,0.0,0.0,0.0
-3049,How to calculate my estimated taxes. 1099 MISC + Self Employment,0.0,0.0,0.0
-7431,Pay off mortgage or invest in high value saving account,0.0,0.0,0.0
-7513,Where are Bogleheadian World ETFs or Index funds?,0.0,0.0,0.0
-6959,What is the term for the quantity (high price minus low price) for a stock?,0.0,0.0,0.0
-5402,Is it impossible to get a home loan with a poor credit history after a divorce?,0.0,0.0,0.0
-6562,"Cheapest way to “wire” money in an Australian bank account to a person in England, while I'm in Laos?",0.0,0.0,0.0
-4775,Should I finance a car to build credit for a mortgage next year?,0.0,0.0,0.0
-701,What are the ins/outs of writing-off part of one's rent for working at home?,0.0,0.0,0.0
-585,Following an investment guru a good idea?,0.0,0.0,0.0
-8934,Dividend yield for multiple years?,0.0,0.0,0.0
-56,Can a entrepreneur hire a self-employed business owner?,0.0,0.0,0.0
-1150,How are the best way to make and save money at 22 years old,0.0,0.0,0.0
-3534,Why do dishonour fees exist?,0.0,0.0,0.0
-8974,"As a 22-year-old, how risky should I be with my 401(k) investments?",0.0,0.0,0.0
-10912,Forex independent investments,0.0,0.0,0.0
-2964,Unmarried Couple Splitting up with Joint Ownership of Home,0.0,0.0,0.0
-4999,Looking for a good source for Financial Statements,0.0,0.0,0.0
-4142,Relation between inflation rates and interest rates,0.0,0.0,0.0
-3189,Diversify my retirement investments with a Roth IRA,0.0,0.0,0.0
-1321,"Are social media accounts (e.g. YouTube, Twitter, Instagram, etc.) considered assets?",0.0,0.0,0.0
-6890,Where does the money go when I buy stocks?,0.0,0.0,0.0
-3888,Why I can't view my debit card pre-authorized amounts?,0.0,0.0,0.0
-849,Accounting for reimbursements that exceed actual expenses,0.0,0.0,0.0
-4539,How should I save money if the real interest rate (after inflation) is negative?,0.0,0.0,0.0
-715,what would you do with $100K saving?,0.0,0.0,0.0
-7509,Investment Portfolio Setup for beginner,0.0,0.0,0.0
-2903,How should I file my taxes as a contractor?,0.0,0.0,0.0
-4827,Are all financial advisors compensated in the same way?,0.0,0.0,0.0
-5534,How does “taking over payments” work?,0.0,0.0,0.0
-1530,"What is the proper way to report additional income for taxes (specifically, Android development)?",0.0,0.0,0.0
-10039,Do individual investors use Google to obtain stock quotes?,0.0,0.0,0.0
-4813,Dealer Financing Fell Through on vehicle purchase: Scam?,0.0,0.0,0.0
+4600,"Why government bonds fluctuate so much, even though interest rates don't change that often?",0.0,0.0,0.0
+8034,What is the average cost of a portfolio on a trading site?,0.0,0.0,0.0
+10482,Rollover into bond fund to do dollar cost averaging [duplicate],0.0,0.0,0.0
+8247,Tax on Stocks or ETF's,0.0,0.0,0.0
 5422,"What are some good books for learning stocks, bonds, derivatives e.t.c for beginner with a math background?",0.0,0.0,0.0
-6221,"To pay off a student loan, should I save up a lump sum payoff payment or pay extra each month?",0.0,0.0,0.0
-1819,Found an old un-cashed paycheck. How long is it good for? What to do if it's expired?,0.0,0.0,0.0
-3149,Tips for insurance coverage for one-man-teams,0.0,0.0,0.0
-9088,Brokerage account for charity,0.0,0.0,0.0
-6792,Where to find the full book of outstanding bids/asks for a stock?,0.0,0.0,0.0
-6625,What does a high theta mean for an option position?,0.0,0.0,0.0
-5271,Why are auto leases stubbornly strict about visa status and how to work around that?,0.0,0.0,0.0
-2108,Can I pay taxes using bill pay from my on-line checking account?,0.0,0.0,0.0
-4837,"When applying for a mortgage, can it also cover outstanding debts?",0.0,0.0,0.0
-4415,How much is inflation?,0.0,0.0,0.0
-8378,Should I wait a few days to sell ESPP Stock?,0.0,0.0,0.0
-5790,FX losses on non-UK mortgage for UK property - tax deductable?,0.0,0.0,0.0
-3405,Non Resident aliens - Question of standard vs itemized,0.0,0.0,0.0
-7928,"If I believe a stock is going to fall, what options do I have to invest on this?",0.0,0.0,0.0
-603,Will one’s education loan application be rejected if one doesn't have a payslip providing collateral?,0.0,0.0,0.0
-1281,How FTB and IRS find mistakes in amended tax returns? Are their processes reliable?,0.0,0.0,0.0
-2885,Merits of buying apartment houses and renting them,0.0,0.0,0.0
-15,Can I send a money order from USPS as a business?,0.0,0.0,0.0
-684,"Beyond RRSP deductions, how does a high income earner save on taxes?",0.0,0.0,0.0
-10674,How to sell a stock in a crashing market?,0.0,0.0,0.0
-3594,"If I were to get into a life situation where I would not be able to make regular payments, do lenders typically provide options other than default?",0.0,0.0,0.0
-10526,What extra information might be obtained from the next highest bids in an order book?,0.0,0.0,0.0
-2181,What are the risks & rewards of being a self-employed independent contractor / consultant vs. being a permanent employee?,0.0,0.0,0.0
-8102,When do I sell a stock that I hold as a long-term position?,0.0,0.0,0.0
-5080,Is there a standard or best practice way to handle money from an expiring UTMA account?,0.0,0.0,0.0
-3932,How do historically low interest rates affect real estate prices?,0.0,0.0,0.0
-7445,IS it the wrong time to get into the equity market immediately after large gains?,0.0,0.0,0.0
-9332,What can I do with a physical stock certificate for a now-mutual company?,0.0,0.0,0.0
-3724,Should you always max out contributions to your 401k?,0.0,0.0,0.0
-6832,incorrect printed information on check stock,0.0,0.0,0.0
-570,Employer options when setting up 401k for employees,0.0,0.0,0.0
-7279,"If I invest in securities denominated in a foreign currency, should I hedge my currency risk?",0.0,0.0,0.0
-10122,Why diversify stocks/investments?,0.0,0.0,0.0
-4037,How separate individual expenses from family expenses in Gnucash?,0.0,0.0,0.0
-8537,What is an “Options Account”?,0.0,0.0,0.0
-8507,When to sell a stock?,0.0,0.0,0.0
-6004,Put-Call parity - what is the difference between the two representations?,0.0,0.0,0.0
-5343,“International credit report” for French nationals?,0.0,0.0,0.0
-547,What percentage of my company should I have if I only put money?,0.0,0.0,0.0
-3394,What is the easiest way to back-test index funds and ETFs?,0.0,0.0,0.0
-810,Can I open a bank account in the US remotely? Will I pay taxes for the money on it?,0.0,0.0,0.0
-3033,Tax consequences of changing state residency?,0.0,0.0,0.0
-8332,Why do put option prices go higher when the underlying stock tanks (drops)?,0.0,0.0,0.0
-5228,How does the bank/IRS know whether a bank transfer over $14k is a gift or loan repayment?,0.0,0.0,0.0
-2685,What ways are there for us to earn a little extra side money?,0.0,0.0,0.0
-1090,Need a formula to determine monthly payments received at time t if I'm reinvesting my returns,0.0,0.0,0.0
-3682,Short selling - lender's motivation,0.0,0.0,0.0
-3008,What are my chances at getting a mortgage with Terrible credit but High income,0.0,0.0,0.0
-9733,Due Diligence - Dilution?,0.0,0.0,0.0
-7311,"Finance, Social Capital IPOA.U",0.0,0.0,0.0
-744,What options are available for a home loan with poor credit but a good rental history?,0.0,0.0,0.0
-7141,Do investors go long option contracts when they cannot cover the exercise of the options?,0.0,0.0,0.0
-4071,"If our economy crashes, and cash is worthless, should i buy gold or silver",0.0,0.0,0.0
-4103,What causes US Treasury I bond fixed interest to increase?,0.0,0.0,0.0
-7512,understanding the process/payment of short sale dividends,0.0,0.0,0.0
-2598,Is it possible for US retail forex traders to trade exotic currencies?,0.0,0.0,0.0
-6800,I don't live in America. How can I buy IPO stock of newly listed companies in the United States?,0.0,0.0,0.0
-1391,How is taxation for youtube/twitch etc monetization handled in the UK?,0.0,0.0,0.0
-2579,What to do when a job offer is made but with a salary less than what was asked for?,0.0,0.0,0.0
-10994,Net loss not distributed by mutual funds to their shareholders?,0.0,0.0,0.0
-689,Receive credit card payment sending my customer details to a credit card processing company?,0.0,0.0,0.0
-604,"Is there a dollar amount that, when adding Massachusetts Sales Tax, precisely equals $200?",0.0,0.0,0.0
-4411,How does the importance of a cash emergency fund change when you live in a country with nationalized healthcare?,0.0,0.0,0.0
-2075,Are stories of turning a few thousands into millions by trading stocks real?,0.0,0.0,0.0
-8230,Why would this kind of penny stock increase so much in value?,0.0,0.0,0.0
-7456,What is market order's relation to bid ask spread?,0.0,0.0,0.0
-1393,"Which is better when working as a contractor, 1099 or incorporating?",0.0,0.0,0.0
-9487,Is a public company allowed to issue new shares below market price without consulting shareholders?,0.0,0.0,0.0
-8539,Can the risk of investing in an asset be different for different investors?,0.0,0.0,0.0
-6896,"Selling high, pay capital gains, re-purchase later",0.0,0.0,0.0
 1085,How do disputed debts work on credit reports?,0.0,0.0,0.0
-6862,Canada discount stock brokers: Interactive Brokers vs. Questrade?,0.0,0.0,0.0
-5903,"Fees aside, what factors could account for performance differences between U.S. large-cap index ETFs?",0.0,0.0,0.0
-5620,What's the fuss about identity theft?,0.0,0.0,0.0
-5254,How do I calculate the quarterly returns of a stock index?,0.0,0.0,0.0
-7221,How Technical Analysts react to non-market hours effects,0.0,0.0,0.0
-2472,How do I deal with a mistaken attempt to collect a debt from me that is owed by someone else?,0.0,0.0,0.0
-2306,To whom should I report fraud on both of my credit cards?,0.0,0.0,0.0
-2400,Will I be paid dividends if I own shares?,0.0,0.0,0.0
-5549,Pros / cons of being more involved with IRA investments [duplicate],0.0,0.0,0.0
-3735,Shorting Stocks And Margin Account Minimum,0.0,0.0,0.0
-622,"Accidentally opened a year term CD account, then realized I need the money sooner. What to do?",0.0,0.0,0.0
-9174,Which U.S. online discount broker is the best value for money?,0.0,0.0,0.0
-8513,Buy on dip when earnings fail?,0.0,0.0,0.0
-5970,How to calculate ownership for property with a partner,0.0,0.0,0.0
-4777,How to finance necessary repairs to our home in order to sell it?,0.0,0.0,0.0
-5741,Learning investing and the stock market,0.0,0.0,0.0
-2318,F1 student and eBay selling tax,0.0,0.0,0.0
-620,Is it wise to have plenty of current accounts in different banks?,0.0,0.0,0.0
-4865,Why are historical prices of stocks different on different websites? Which one should I believe?,0.0,0.0,0.0
-5150,What credit card information are offline US merchants allowed to collect for purposes other than the transaction?,0.0,0.0,0.0
-2857,"I have around 60K $. Thinking about investing in Oil, how to proceed?",0.0,0.0,0.0
-10808,What are a few sites that make it easy to invest in high interest rate mutual funds?,0.0,0.0,0.0
-3085,How long can I convert 401(k) to Roth 401(k)?,0.0,0.0,0.0
-104,Investing/business with other people's money: How does it work?,0.0,0.0,0.0
-5083,Co-signer deceased,0.0,0.0,0.0
-6867,Will there always be somebody selling/buying in every stock?,0.0,0.0,0.0
-9633,Video recommendation for stock market education,0.0,0.0,0.0
-5710,Bucketing investments to track individual growths,0.0,0.0,0.0
-9824,Where can end-of-day data be downloaded for corporate bonds?,0.0,0.0,0.0
-5021,"Is there a more flexible stock chart service, e.g. permitting choice of colours when comparing multiple stocks?",0.0,0.0,0.0
-9548,"How do I research, analyze, and choose the right mutual fund for a roth ira?",0.0,0.0,0.0
-6142,How does stabilization work during an IPO?,0.0,0.0,0.0
-3125,"Claiming mileage allowances, what are the rules/guidelines?",0.0,0.0,0.0
-4484,Has the likelihood of getting a lower interest rate by calling & asking been reduced by recent credit card regulations?,0.0,0.0,0.0
-1889,Reporting financial gains from my online store,0.0,0.0,0.0
-1920,Clarification on student expenses - To file the tax for the next year,0.0,0.0,0.0
-9108,"Starting an investment portfolio with Rs 5,000/-",0.0,0.0,0.0
-3759,Simplifying money management,0.0,0.0,0.0
-7295,Selling non-dividend for dividend stocks,0.0,0.0,0.0
-7329,Does Implied Volatilty factor in all known future events?,0.0,0.0,0.0
-1230,How does Walmart account their expired food,0.0,0.0,0.0
-2486,"Is working on a W2 basis, with benefits paid to me, a good idea?",0.0,0.0,0.0
-6121,What are my best options if I don't have a lot of credit lines for housing loans?,0.0,0.0,0.0
-859,"Any reason to keep around my account with my old, 'big' bank?",0.0,0.0,0.0
-2590,Are non-residents or foreigners permitted to buy or own shares of UK companies?,0.0,0.0,0.0
-5374,What were the main causes of the spike and drop of DRYS's stock price?,0.0,0.0,0.0
-1310,Is is possible to take a mortgage using Bitcoin as collateral?,0.0,0.0,0.0
-8202,What accounted for DXJR's huge drop in stock price?,0.0,0.0,0.0
-8013,Frequency of investments to maximise returns (and minimise fees),0.0,0.0,0.0
-5763,What is the best way to get a “rough” home appraisal prior to starting the refinance process?,0.0,0.0,0.0
-26,Applying for and receiving business credit,0.0,0.0,0.0
-4962,Net Cash Flows from Selling the Bond and Investing,0.0,0.0,0.0
-4846,Is there anything comparable to/resembling CNN's Fear and Greed Index?,0.0,0.0,0.0
-7702,Bond ETFs vs actual bonds,0.0,0.0,0.0
-939,How to correct a tax return filed electronically and already approved?,0.0,0.0,0.0
-7206,Who Bought A Large Number Of Shares?,0.0,0.0,0.0
-10246,Understanding the T + 3 settlement days rule,0.0,0.0,0.0
-8121,Can I calculate stock value with Williams%R if I know the last set?,0.0,0.0,0.0
-98,"How can I make $250,000.00 from trading/investing/business within 5 years?",0.0,0.0,0.0
-503,Privacy preferences on creditworthiness data,0.0,0.0,0.0
-8116,A-B-C Class Shares: What's the difference?,0.0,0.0,0.0
-4289,Does the currency exchange rate contain any additional information at all?,0.0,0.0,0.0
-4394,"Transfer $50k to another person's account (in California, USA)",0.0,0.0,0.0
-7218,What margin is required to initiate and maintain a short sale,0.0,0.0,0.0
-8982,Are Exchange-Traded Funds (ETFs) less safe than regular mutual funds?,0.0,0.0,0.0
-549,Where to request ACH Direct DEBIT of funds from MY OWN personal bank account?,0.0,0.0,0.0
-8937,“In-the-Money” vs “Out-of-the-Money” Call Options,0.0,0.0,0.0
-8005,Difference between Vanguard sp500 UCITS and Vanguard sp500,0.0,0.0,0.0
-2460,What are the consequences of not respecting a notice period when leaving a job?,0.0,0.0,0.0
-9403,Abundance of Cash - What should I do?,0.0,0.0,0.0
-2676,Tax question about selling a car,0.0,0.0,0.0
-929,Freelancer: Should I start a second bank account?,0.0,0.0,0.0
-6467,Advice on strategy for when to sell,0.0,0.0,0.0
-2895,Where should a young student put their money?,0.0,0.0,0.0
-6787,"Would it make sense to sell a stock, then repurchase it for tax purposes?",0.0,0.0,0.0
-7096,What's the formula for profits and losses when I delta hedge?,0.0,0.0,0.0
-2747,What evidence do I need to declare tutoring income on my income tax?,0.0,0.0,0.0
-9735,What are “equity assets”?,0.0,0.0,0.0
-7178,Should an ADR that is being delisted be sold off?,0.0,0.0,0.0
-7700,Should I re-allocate my portfolio now or let it balance out over time?,0.0,0.0,0.0
+6896,"Selling high, pay capital gains, re-purchase later",0.0,0.0,0.0
+8539,Can the risk of investing in an asset be different for different investors?,0.0,0.0,0.0
+9487,Is a public company allowed to issue new shares below market price without consulting shareholders?,0.0,0.0,0.0
+1393,"Which is better when working as a contractor, 1099 or incorporating?",0.0,0.0,0.0
+7456,What is market order's relation to bid ask spread?,0.0,0.0,0.0
 3014,What investments are positively related to the housing market decline?,0.0,0.0,0.0
-4102,How can I determine if my rate of return is “good” for the market I am in?,0.0,0.0,0.0
-7803,Can the Delta be used to calculate the option premium given a certain target?,0.0,0.0,0.0
-7592,few question about debit credit and liabilities,0.0,0.0,0.0
-2551,How to find cheaper alternatives to a traditional home telephone line?,0.0,0.0,0.0
-1783,Freelancing Tax implication,0.0,0.0,0.0
-9771,Is there any emprical research done on 'adding to a loser',0.0,0.0,0.0
-10827,How much should I be contributing to my 401k given my employer's contribution?,0.0,0.0,0.0
-7326,Do brokers execute every trade on the exchange?,0.0,0.0,0.0
-4465,How to donate to charity that will make a difference?,0.0,0.0,0.0
-753,Taxes due for hobbyist Group Buy,0.0,0.0,0.0
-4804,How do financial services aimed at women differ from conventional services?,0.0,0.0,0.0
-3451,Should you keep your stocks if you are too late to sell?,0.0,0.0,0.0
-7017,Basic Algorithmic Trading Strategy,0.0,0.0,0.0
-4641,Where should I park my rainy-day / emergency fund?,0.0,0.0,0.0
-5503,Tax considerations for selling a property below appraised value to family?,0.0,0.0,0.0
-7758,Bid/ask spreads for index funds,0.0,0.0,0.0
-3612,How can I buy and sell the same stock on the same day?,0.0,0.0,0.0
-4153,How do I invest in emerging markets,0.0,0.0,0.0
-4409,My friend wants to put my name down for a house he's buying. What risks would I be taking?,0.0,0.0,0.0
-5369,Paying for things on credit and immediately paying them off: any help for credit rating?,0.0,0.0,0.0
-7925,Can I sell a stock immediately?,0.0,0.0,0.0
-7345,What do these numbers mean? (futures),0.0,0.0,0.0
-6629,Tax treatment of a boxed trade?,0.0,0.0,0.0
-6644,How to know precisely when a SWIFT is issued by a bank?,0.0,0.0,0.0
-7463,Pros/cons of borrowing money using a mortgage loan and investing it in a low-fee index fund?,0.0,0.0,0.0
-10267,How should I prepare for the next financial crisis?,0.0,0.0,0.0
+8230,Why would this kind of penny stock increase so much in value?,0.0,0.0,0.0
+2075,Are stories of turning a few thousands into millions by trading stocks real?,0.0,0.0,0.0
+4411,How does the importance of a cash emergency fund change when you live in a country with nationalized healthcare?,0.0,0.0,0.0
+604,"Is there a dollar amount that, when adding Massachusetts Sales Tax, precisely equals $200?",0.0,0.0,0.0
+689,Receive credit card payment sending my customer details to a credit card processing company?,0.0,0.0,0.0
+5790,FX losses on non-UK mortgage for UK property - tax deductable?,0.0,0.0,0.0
+2579,What to do when a job offer is made but with a salary less than what was asked for?,0.0,0.0,0.0
+7700,Should I re-allocate my portfolio now or let it balance out over time?,0.0,0.0,0.0
+1391,How is taxation for youtube/twitch etc monetization handled in the UK?,0.0,0.0,0.0
+6800,I don't live in America. How can I buy IPO stock of newly listed companies in the United States?,0.0,0.0,0.0
+2598,Is it possible for US retail forex traders to trade exotic currencies?,0.0,0.0,0.0
+7512,understanding the process/payment of short sale dividends,0.0,0.0,0.0
+4103,What causes US Treasury I bond fixed interest to increase?,0.0,0.0,0.0
+4071,"If our economy crashes, and cash is worthless, should i buy gold or silver",0.0,0.0,0.0
+7141,Do investors go long option contracts when they cannot cover the exercise of the options?,0.0,0.0,0.0
+744,What options are available for a home loan with poor credit but a good rental history?,0.0,0.0,0.0
+7311,"Finance, Social Capital IPOA.U",0.0,0.0,0.0
+9733,Due Diligence - Dilution?,0.0,0.0,0.0
+8513,Buy on dip when earnings fail?,0.0,0.0,0.0
+5083,Co-signer deceased,0.0,0.0,0.0
+104,Investing/business with other people's money: How does it work?,0.0,0.0,0.0
+3085,How long can I convert 401(k) to Roth 401(k)?,0.0,0.0,0.0
+10808,What are a few sites that make it easy to invest in high interest rate mutual funds?,0.0,0.0,0.0
+2857,"I have around 60K $. Thinking about investing in Oil, how to proceed?",0.0,0.0,0.0
+5150,What credit card information are offline US merchants allowed to collect for purposes other than the transaction?,0.0,0.0,0.0
+7178,Should an ADR that is being delisted be sold off?,0.0,0.0,0.0
+4865,Why are historical prices of stocks different on different websites? Which one should I believe?,0.0,0.0,0.0
+620,Is it wise to have plenty of current accounts in different banks?,0.0,0.0,0.0
+2318,F1 student and eBay selling tax,0.0,0.0,0.0
+5741,Learning investing and the stock market,0.0,0.0,0.0
+4777,How to finance necessary repairs to our home in order to sell it?,0.0,0.0,0.0
+9735,What are “equity assets”?,0.0,0.0,0.0
+5970,How to calculate ownership for property with a partner,0.0,0.0,0.0
+6867,Will there always be somebody selling/buying in every stock?,0.0,0.0,0.0
+9174,Which U.S. online discount broker is the best value for money?,0.0,0.0,0.0
+622,"Accidentally opened a year term CD account, then realized I need the money sooner. What to do?",0.0,0.0,0.0
+3735,Shorting Stocks And Margin Account Minimum,0.0,0.0,0.0
+5549,Pros / cons of being more involved with IRA investments [duplicate],0.0,0.0,0.0
+2400,Will I be paid dividends if I own shares?,0.0,0.0,0.0
+2306,To whom should I report fraud on both of my credit cards?,0.0,0.0,0.0
+2472,How do I deal with a mistaken attempt to collect a debt from me that is owed by someone else?,0.0,0.0,0.0
+7221,How Technical Analysts react to non-market hours effects,0.0,0.0,0.0
+5254,How do I calculate the quarterly returns of a stock index?,0.0,0.0,0.0
+5620,What's the fuss about identity theft?,0.0,0.0,0.0
+5903,"Fees aside, what factors could account for performance differences between U.S. large-cap index ETFs?",0.0,0.0,0.0
+10994,Net loss not distributed by mutual funds to their shareholders?,0.0,0.0,0.0
+2181,What are the risks & rewards of being a self-employed independent contractor / consultant vs. being a permanent employee?,0.0,0.0,0.0
+10526,What extra information might be obtained from the next highest bids in an order book?,0.0,0.0,0.0
+3594,"If I were to get into a life situation where I would not be able to make regular payments, do lenders typically provide options other than default?",0.0,0.0,0.0
+10674,How to sell a stock in a crashing market?,0.0,0.0,0.0
+684,"Beyond RRSP deductions, how does a high income earner save on taxes?",0.0,0.0,0.0
+15,Can I send a money order from USPS as a business?,0.0,0.0,0.0
+2885,Merits of buying apartment houses and renting them,0.0,0.0,0.0
+1281,How FTB and IRS find mistakes in amended tax returns? Are their processes reliable?,0.0,0.0,0.0
+603,Will one’s education loan application be rejected if one doesn't have a payslip providing collateral?,0.0,0.0,0.0
+7928,"If I believe a stock is going to fall, what options do I have to invest on this?",0.0,0.0,0.0
+3405,Non Resident aliens - Question of standard vs itemized,0.0,0.0,0.0
+8102,When do I sell a stock that I hold as a long-term position?,0.0,0.0,0.0
+8378,Should I wait a few days to sell ESPP Stock?,0.0,0.0,0.0
+4415,How much is inflation?,0.0,0.0,0.0
+4837,"When applying for a mortgage, can it also cover outstanding debts?",0.0,0.0,0.0
+2108,Can I pay taxes using bill pay from my on-line checking account?,0.0,0.0,0.0
+5271,Why are auto leases stubbornly strict about visa status and how to work around that?,0.0,0.0,0.0
+6625,What does a high theta mean for an option position?,0.0,0.0,0.0
+6792,Where to find the full book of outstanding bids/asks for a stock?,0.0,0.0,0.0
+2747,What evidence do I need to declare tutoring income on my income tax?,0.0,0.0,0.0
+9088,Brokerage account for charity,0.0,0.0,0.0
+3149,Tips for insurance coverage for one-man-teams,0.0,0.0,0.0
+1819,Found an old un-cashed paycheck. How long is it good for? What to do if it's expired?,0.0,0.0,0.0
+6221,"To pay off a student loan, should I save up a lump sum payoff payment or pay extra each month?",0.0,0.0,0.0
+8507,When to sell a stock?,0.0,0.0,0.0
+3682,Short selling - lender's motivation,0.0,0.0,0.0
+1090,Need a formula to determine monthly payments received at time t if I'm reinvesting my returns,0.0,0.0,0.0
+2685,What ways are there for us to earn a little extra side money?,0.0,0.0,0.0
+5228,How does the bank/IRS know whether a bank transfer over $14k is a gift or loan repayment?,0.0,0.0,0.0
+8332,Why do put option prices go higher when the underlying stock tanks (drops)?,0.0,0.0,0.0
+3033,Tax consequences of changing state residency?,0.0,0.0,0.0
+810,Can I open a bank account in the US remotely? Will I pay taxes for the money on it?,0.0,0.0,0.0
+7096,What's the formula for profits and losses when I delta hedge?,0.0,0.0,0.0
+3394,What is the easiest way to back-test index funds and ETFs?,0.0,0.0,0.0
+547,What percentage of my company should I have if I only put money?,0.0,0.0,0.0
+5343,“International credit report” for French nationals?,0.0,0.0,0.0
+6004,Put-Call parity - what is the difference between the two representations?,0.0,0.0,0.0
+3008,What are my chances at getting a mortgage with Terrible credit but High income,0.0,0.0,0.0
+8537,What is an “Options Account”?,0.0,0.0,0.0
+4037,How separate individual expenses from family expenses in Gnucash?,0.0,0.0,0.0
+6787,"Would it make sense to sell a stock, then repurchase it for tax purposes?",0.0,0.0,0.0
+10122,Why diversify stocks/investments?,0.0,0.0,0.0
+7279,"If I invest in securities denominated in a foreign currency, should I hedge my currency risk?",0.0,0.0,0.0
+570,Employer options when setting up 401k for employees,0.0,0.0,0.0
+6832,incorrect printed information on check stock,0.0,0.0,0.0
+2895,Where should a young student put their money?,0.0,0.0,0.0
+3724,Should you always max out contributions to your 401k?,0.0,0.0,0.0
+9332,What can I do with a physical stock certificate for a now-mutual company?,0.0,0.0,0.0
+7445,IS it the wrong time to get into the equity market immediately after large gains?,0.0,0.0,0.0
 699,Prepaid Rent (Accrual Based Accounting),0.0,0.0,0.0
-2498,How do I calculate tax liability on the turnover of a small vendor?,0.0,0.0,0.0
-3767,What should I be doing to protect myself from identity theft?,0.0,0.0,0.0
-7145,Are there “buy and hold” passively managed funds?,0.0,0.0,0.0
-6410,Will an ETF immediately reflect a reconstitution of underlying index,0.0,0.0,0.0
-5030,Why pay for end-of-day historical prices?,0.0,0.0,0.0
-6252,"Is this mortgage advice good, or is it hooey?",0.0,0.0,0.0
-885,How long do credit cards keep working after you disappear?,0.0,0.0,0.0
-7377,What type of returns Vanguard is quoting?,0.0,0.0,0.0
-4031,28 years old and just inherited large amount of money and real estate - unsure what to do with it,0.0,0.0,0.0
-766,Will the ex-homeowner still owe money after a foreclosure?,0.0,0.0,0.0
-8779,How does a defined contribution plan work,0.0,0.0,0.0
-7622,Best way to pay off debt?,0.0,0.0,0.0
-945,Paid by an American company but working from France: where should I pay taxes?,0.0,0.0,0.0
-2549,How to graph the market year over year? for example Dow Jones Index,0.0,0.0,0.0
-6814,Selling Stock - All or Nothing?,0.0,0.0,0.0
-4756,What is the formula for the Tesla Finance calculation?,0.0,0.0,0.0
-7754,Inverse Relationship between Volatility and Beta,0.0,0.0,0.0
-4205,How and why does the exchange rate of a currency change almost everyday?,0.0,0.0,0.0
-1306,"I made an investment with a company that contacted me, was it safe?",0.0,0.0,0.0
-10213,Looking for good investment vehicle for seasonal work and savings,0.0,0.0,0.0
-106,What approaches are there for pricing a small business?,0.0,0.0,0.0
-5196,I might use a credit card convenience check. What should I consider?,0.0,0.0,0.0
-3490,Tax Witholding for Stock Sale,0.0,0.0,0.0
-3909,How to rescue my money from negative interest?,0.0,0.0,0.0
-4942,find stock composition of a publicly traded fund,0.0,0.0,0.0
-6907,Nominal value of shares,0.0,0.0,0.0
-5464,Resources on Buying Rental Properties,0.0,0.0,0.0
-4500,What to ask Warren Buffet at the Berkshire Hathaway shareholder meeting?,0.0,0.0,0.0
-1948,Which colors can one use to fill out a check in the US?,0.0,0.0,0.0
-5206,Is it a good idea to get an unsecured loan to pay off a credit card that won't lower a high rate?,0.0,0.0,0.0
-8959,How is the opening-day price of a stock decided?,0.0,0.0,0.0
-4433,When should you use an actively managed mutual fund in a 401k?,0.0,0.0,0.0
-4188,Why is the stock market rising after Trump's attack on the TPP?,0.0,0.0,0.0
-7098,Can another tax loss be used to offset capital gains taxes? How does it work?,0.0,0.0,0.0
-7205,Is it possible to see option prices from the past?,0.0,0.0,0.0
-2384,Tax: 1099 paper form,0.0,0.0,0.0
-7747,What happens to bonds values when interest rates rise? [duplicate],0.0,0.0,0.0
-2076,Can vet / veterinary bills be considered deductions (tax-deductible) for Income Tax purposes [Canada]?,0.0,0.0,0.0
-1322,Is this follow-up after a car crash a potential scam?,0.0,0.0,0.0
-5172,does interest payment on loan stay the same if I pay early,0.0,0.0,0.0
-5185,Invest in low cost small cap index funds when saving towards retirement?,0.0,0.0,0.0
-6909,Why do stocks priced above $2.00 on the ASX sometimes move in $0.005 increments?,0.0,0.0,0.0
-5906,0% APR first 12 months on new credit card. Can I exceed that 30% rule of thumb and not hurt my credit score?,0.0,0.0,0.0
-687,Online tool to connect to my bank account and tell me what I spend in different categories?,0.0,0.0,0.0
-8017,Purchasing ETFs when (pretty much) everything else is maxed out,0.0,0.0,0.0
-9929,"Investing in commodities, pros and cons?",0.0,0.0,0.0
-6612,"If I have a lot of debt and the housing market is rising, should I rent and slowly pay off my debt or buy and roll the debt into a mortgage?",0.0,0.0,0.0
-3530,How to exclude stock from mutual fund,0.0,0.0,0.0
+3932,How do historically low interest rates affect real estate prices?,0.0,0.0,0.0
+5080,Is there a standard or best practice way to handle money from an expiring UTMA account?,0.0,0.0,0.0
 1416,US resident with Canadian income via T4A-NR,0.0,0.0,0.0
-3771,Best way to buy Japanese yen for travel?,0.0,0.0,0.0
-2051,Where to find the 5 or 10 year returns for a mutual fund?,0.0,0.0,0.0
-9598,How do index funds actually work?,0.0,0.0,0.0
-90,Filing personal with 1099s versus business s-corp?,0.0,0.0,0.0
-10547,How much do brokerages pay exchanges per trade?,0.0,0.0,0.0
-5231,Where to find CSV or JSON data for publicly traded companies listed with their IPO date?,0.0,0.0,0.0
-7674,Choosing the limit when making a limit order?,0.0,0.0,0.0
-10137,F-1 student investing in foreign markets,0.0,0.0,0.0
-5940,How does investment into a private company work?,0.0,0.0,0.0
-42,What are the ins/outs of writing equipment purchases off as business expenses in a home based business?,0.0,0.0,0.0
-5616,How and where do companies publish financial reports?,0.0,0.0,0.0
-5427,How do auto-loan payments factor into taxes for cars that are solely used by dependent(s)?,0.0,0.0,0.0
-9871,What should I do with the 50k I have sitting in a European bank?,0.0,0.0,0.0
-2443,What are some way to transfer money from Hong Kong to India on a monthly basis?,0.0,0.0,0.0
-5090,Should I take a student loan to pursue my undergraduate studies in France?,0.0,0.0,0.0
-2088,How would I go about selling the stock of a privately held company?,0.0,0.0,0.0
-9391,Should I replace bonds in a passive investment strategy,0.0,0.0,0.0
-529,Sole proprietorship or LLC?,0.0,0.0,0.0
-2118,What happened in Argentina in 2001 bank sector? did the banks closed? all or some?,0.0,0.0,0.0
-4955,How to calculate the value of a bond that is priced to yield X%,0.0,0.0,0.0
-8275,Buy/Selling prices at the stock exchange represent someone Selling/Buying at that price?,0.0,0.0,0.0
-10628,"What happens with the “long” buyer of a stock when somebody else's short fails (that is, unlimited loss bankrupts short seller)",0.0,0.0,0.0
-2398,Frustrated Landlord,0.0,0.0,0.0
-2856,How can I cash out a check internationally?,0.0,0.0,0.0
-2395,Freelance site with lowest commission fees?,0.0,0.0,0.0
-6746,What happens if stock purchased on margin plummets below what I have in the brokerage?,0.0,0.0,0.0
-5511,Pay off car loan entirely or leave $1 until the end of the loan period?,0.0,0.0,0.0
-813,Income Tax and Investments,0.0,0.0,0.0
-8834,Pros/Cons of Buying Discounted Company Stock,0.0,0.0,0.0
-988,Where should I invest my savings?,0.0,0.0,0.0
-3369,Why should one only contribute up to the employer's match in a 401(k)?,0.0,0.0,0.0
-9296,Why would Two ETFs tracking Identical Indexes Produce different Returns?,0.0,0.0,0.0
-9245,Stock Options for a company bought out in cash and stock,0.0,0.0,0.0
-4678,"Finance, Cash or Lease?",0.0,0.0,0.0
-6683,Who are the sellers for the new public stocks?,0.0,0.0,0.0
-3829,Are all VISA cards connected with bank accounts?,0.0,0.0,0.0
-5585,Is there any site you can find out about the 'bonus features' of credit cards?,0.0,0.0,0.0
-4105,As an investor what are side effects of Quantitative Easing in US and in EU?,0.0,0.0,0.0
-1074,How common is “pass-through” health insurance?,0.0,0.0,0.0
-2465,Can capital expenses for volunteer purposes be deducted from income?,0.0,0.0,0.0
-4640,What can my relatives do to minimize their out of pocket expenses on their fathers estate,0.0,0.0,0.0
-9275,Do I have to pay a capital gains tax if I rebuy the same stock within 30 days?,0.0,0.0,0.0
-3569,Funds in closed bank account have gone to the government,0.0,0.0,0.0
-8947,Can a Roth IRA be used as a savings account?,0.0,0.0,0.0
-5808,How do you calculate return on investment for a share of stock?,0.0,0.0,0.0
-2513,How does revenue shared with someone else go into my tax return in Canada?,0.0,0.0,0.0
-4464,Are Australian mutual fund fees large compared to US?,0.0,0.0,0.0
-3822,How to change a large quantity of U.S. dollars into Euros?,0.0,0.0,0.0
-7879,Any Tips on How to Get the Highest Returns Within 4 Months by Investing in Stocks?,0.0,0.0,0.0
-8512,Is it possible to transfer stock I already own into my Roth IRA without having to sell the stock?,0.0,0.0,0.0
-3995,"I have more than $250,000 in a US Bank account… mistake?",0.0,0.0,0.0
-559,"Challenged an apparently bogus credit card charge, what happens now?",0.0,0.0,0.0
-4179,Why could the serious financial woes of some EU member states lead to the end of the Euro?,0.0,0.0,0.0
-2891,May I claim money earned but not received in 2012,0.0,0.0,0.0
-853,What will my taxes be as self employed?,0.0,0.0,0.0
-10136,How to minimise the risk of a reduction in purchase power in case of Brexit for money held in a bank account?,0.0,0.0,0.0
-8635,Is there any flaw in this investment scheme?,0.0,0.0,0.0
-3625,What should I do with my paper financial documents?,0.0,0.0,0.0
