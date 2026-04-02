@@ -2,6 +2,10 @@
 Dataset/
 *.DS_Store
 
+# Large model files - too big for GitHub (regenerate by running notebooks)
+*.index
+*.pkl
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

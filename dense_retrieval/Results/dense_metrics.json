@@ -1,0 +1,16 @@
+{
+  "dataset": "FiQA Test",
+  "num_queries": 648,
+  "models": {
+    "BM25 Baseline": {
+      "NDCG@10": 0.2169,
+      "MRR": 0.2706,
+      "Recall@10": 0.2784
+    },
+    "MiniLM-Dense": {
+      "NDCG@10": 0.3687,
+      "MRR": 0.4451,
+      "Recall@10": 0.4413
+    }
+  }
+}
