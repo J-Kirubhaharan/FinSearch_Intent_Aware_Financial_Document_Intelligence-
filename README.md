@@ -10,8 +10,8 @@ An end-to-end retrieval-augmented generation (RAG) system for financial document
 FinSearch/
 ├── baseline/                   # Week 1 — BM25 Baseline
 ├── dense_retrieval/            # Week 2 — Dense Retrieval (4 models compared)
-├── hybrid/                     # Week 3 — Hybrid Retrieval (BM25 + Dense)
-├── finrerank/                  # Week 4 — LLM Reranking + Pipeline Comparison
+├── hybrid/                     # Week 2 — Hybrid Retrieval (BM25 + Dense)
+├── finrerank/                  # Week 3 — LLM Reranking + Pipeline Comparison
 ├── pdf_chunking/               # Chunking Strategy Evaluation (foundation)
 ├── intent_classification/      # Intent Classifier (4-category routing)
 ├── Dataset/                    # FiQA corpus + PDF knowledge base
@@ -100,7 +100,7 @@ Dense retrieval alone gives **+70% NDCG@10** over BM25.
 
 ---
 
-## Week 3 — Hybrid Retrieval
+## Week 2 — Hybrid Retrieval
 
 **Goal:** Combine BM25 (lexical) and dense (semantic) retrieval for best of both.  
 **Files:** `hybrid/Hybrid_RRF.ipynb`
@@ -126,7 +126,7 @@ Alpha sweep result — α=0.7 (70% dense + 30% BM25) is the optimal balance:
 
 ---
 
-## Week 4 — LLM Reranking + Query Expansion
+## Week 3 — LLM Reranking + Query Expansion
 
 **Goal:** Add query expansion and LLM-based reranking on top of the best dense retriever (BGE-Large).  
 **Files:** `finrerank/FinChatbot.ipynb`, `finrerank/FinPipeline_Comparison.ipynb`
