@@ -1,0 +1,15 @@
+{
+  "zero_shot_deberta": {
+    "banking77_acc": 25.5,
+    "qa_acc": 5.0
+  },
+  "finetuned_minilm_full": {
+    "banking77_acc": 93.0,
+    "qa_acc": 90.0
+  },
+  "finetuned_minilm_pdf": {
+    "banking77_acc": 73.5,
+    "qa_acc": 75.8
+  },
+  "winner": "Fine-Tuned MiniLM (Full Dataset)"
+}
