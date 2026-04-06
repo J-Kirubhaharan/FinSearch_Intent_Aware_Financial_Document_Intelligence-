@@ -217,3 +217,7 @@ __marimo__/
 # Model checkpoints — too large for GitHub
 intent_classification/minilm_intent_classifier/checkpoint-*/
 intent_classification/minilm_pdf_domain/checkpoint-*/
+intent_classification/minilm_intent_classifier/model.safetensors
+intent_classification/minilm_intent_classifier/training_args.bin
+intent_classification/minilm_pdf_domain/model.safetensors
+intent_classification/minilm_pdf_domain/training_args.bin
