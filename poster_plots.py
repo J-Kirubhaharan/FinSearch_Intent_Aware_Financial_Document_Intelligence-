@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from matplotlib.gridspec import GridSpec
 
-OUT_DIR = 'poster_images'
+OUT_DIR = 'visualization'
 os.makedirs(OUT_DIR, exist_ok=True)
 
 # ── Palette ────────────────────────────────────────────────────────────────────
