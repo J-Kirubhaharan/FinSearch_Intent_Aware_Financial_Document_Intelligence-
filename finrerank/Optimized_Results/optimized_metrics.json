@@ -1,0 +1,8 @@
+{
+  "model": "Optimized: BGE-Large + QueryExpansion(text concat) + top-100 + Mistral Rerank",
+  "dataset": "FiQA Test (50% sample)",
+  "num_queries": 324,
+  "NDCG@10": 0.3614,
+  "MRR": 0.4506,
+  "Recall@10": 0.4051
+}

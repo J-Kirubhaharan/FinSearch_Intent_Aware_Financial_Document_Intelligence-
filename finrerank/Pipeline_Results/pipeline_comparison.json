@@ -1,0 +1,63 @@
+{
+  "evaluation": "FiQA reduced corpus + 30% sample (random_state=42)",
+  "corpus": "Stratified: all qrel docs + 8% random negatives",
+  "config": {
+    "TOP_K": 50,
+    "ALPHA": 0.7,
+    "BM25_K1": 1.2,
+    "BM25_B": 0.5,
+    "reranker": "mistralai/mistral-large-2411",
+    "answer_model": "meta-llama/llama-3.3-70b-instruct"
+  },
+  "pipelines": {
+    "A1_MiniLM_Dense": {
+      "NDCG@10": 0.5917,
+      "MRR": 0.6607,
+      "Recall@10": 0.6724,
+      "num_queries": 194
+    },
+    "A2_MiniLM_Hybrid_0.7": {
+      "NDCG@10": 0.5813,
+      "MRR": 0.6685,
+      "Recall@10": 0.6513,
+      "num_queries": 194
+    },
+    "B1_BGELarge_Dense": {
+      "NDCG@10": 0.6056,
+      "MRR": 0.6679,
+      "Recall@10": 0.6917,
+      "num_queries": 194
+    },
+    "B2_BGELarge_Hybrid_0.7": {
+      "NDCG@10": 0.5381,
+      "MRR": 0.6243,
+      "Recall@10": 0.5984,
+      "num_queries": 194
+    }
+  },
+  "winner": "B1 BGE-Large Dense + QE + Mistral",
+  "hybrid_delta_MiniLM": -0.0104,
+  "hybrid_delta_BGELarge": -0.0675,
+  "reference_full_corpus": {
+    "BM25 Baseline (full corpus)": {
+      "NDCG@10": 0.2169,
+      "MRR": 0.2706,
+      "Recall@10": 0.2784
+    },
+    "MiniLM Dense (full 648 queries)": {
+      "NDCG@10": 0.3687,
+      "MRR": 0.4451,
+      "Recall@10": 0.4413
+    },
+    "MiniLM Hybrid alpha=0.7 (full 648)": {
+      "NDCG@10": 0.3791,
+      "MRR": 0.4606,
+      "Recall@10": 0.4473
+    },
+    "Mistral Rerank top-20 (full 648)": {
+      "NDCG@10": 0.3885,
+      "MRR": 0.4775,
+      "Recall@10": 0.4485
+    }
+  }
+}

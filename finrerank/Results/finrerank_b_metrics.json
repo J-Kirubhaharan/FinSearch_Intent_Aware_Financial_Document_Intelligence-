@@ -1,0 +1,8 @@
+{
+  "model": "LLM Re-ranker B (Hybrid-Alpha -> Mistral Large -> Groq Answer)",
+  "dataset": "FiQA Test",
+  "num_queries": 648,
+  "NDCG@10": 0.3885,
+  "MRR": 0.4775,
+  "Recall@10": 0.4485
+}
