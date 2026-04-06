@@ -1,0 +1,114 @@
+{
+  "corpus": "4 selected PDFs (1 per category)",
+  "qa_pairs": 20,
+  "A1_MiniLM": {
+    "S1": {
+      "strategy": "Sliding-512w",
+      "recall_10": 0.35,
+      "by_category": {
+        "Regulatory": 0.4,
+        "Consumer_Protection": 0.4,
+        "Payment_Industry": 0.4,
+        "Synthetic_Policies": 0.2
+      }
+    },
+    "S2": {
+      "strategy": "Sliding-256w",
+      "recall_10": 0.4,
+      "by_category": {
+        "Regulatory": 0.4,
+        "Consumer_Protection": 0.6,
+        "Payment_Industry": 0.4,
+        "Synthetic_Policies": 0.2
+      }
+    },
+    "S3": {
+      "strategy": "Paragraph",
+      "recall_10": 0.3,
+      "by_category": {
+        "Regulatory": 0.4,
+        "Consumer_Protection": 0.4,
+        "Payment_Industry": 0.4,
+        "Synthetic_Policies": 0.0
+      }
+    },
+    "S4": {
+      "strategy": "Token-Exact-200",
+      "recall_10": 0.75,
+      "by_category": {
+        "Regulatory": 0.8,
+        "Consumer_Protection": 0.8,
+        "Payment_Industry": 1.0,
+        "Synthetic_Policies": 0.4
+      }
+    },
+    "S5": {
+      "strategy": "Section-200",
+      "recall_10": 0.6,
+      "by_category": {
+        "Regulatory": 0.8,
+        "Consumer_Protection": 0.6,
+        "Payment_Industry": 0.8,
+        "Synthetic_Policies": 0.2
+      }
+    }
+  },
+  "B1_BGELarge": {
+    "S1": {
+      "strategy": "Sliding-512w",
+      "recall_10": 0.35,
+      "by_category": {
+        "Regulatory": 0.4,
+        "Consumer_Protection": 0.4,
+        "Payment_Industry": 0.4,
+        "Synthetic_Policies": 0.2
+      }
+    },
+    "S2": {
+      "strategy": "Sliding-256w",
+      "recall_10": 0.4,
+      "by_category": {
+        "Regulatory": 0.4,
+        "Consumer_Protection": 0.8,
+        "Payment_Industry": 0.4,
+        "Synthetic_Policies": 0.0
+      }
+    },
+    "S3": {
+      "strategy": "Paragraph",
+      "recall_10": 0.35,
+      "by_category": {
+        "Regulatory": 0.4,
+        "Consumer_Protection": 0.4,
+        "Payment_Industry": 0.4,
+        "Synthetic_Policies": 0.2
+      }
+    },
+    "S4": {
+      "strategy": "Token-Exact-400",
+      "recall_10": 0.8,
+      "by_category": {
+        "Regulatory": 0.6,
+        "Consumer_Protection": 1.0,
+        "Payment_Industry": 1.0,
+        "Synthetic_Policies": 0.6
+      }
+    },
+    "S5": {
+      "strategy": "Section-400",
+      "recall_10": 0.75,
+      "by_category": {
+        "Regulatory": 1.0,
+        "Consumer_Protection": 0.8,
+        "Payment_Industry": 0.8,
+        "Synthetic_Policies": 0.4
+      }
+    }
+  },
+  "winner": {
+    "pipeline": "B1",
+    "strategy": "S4",
+    "name": "Token-Exact-400",
+    "recall_10": 0.8
+  }
+}
