@@ -1,16 +1,24 @@
 {
-  "eval_set": "synthetic_qa_pdf.json (20 pairs)",
-  "base_minilm": {
-    "recall@10": 0.5,
-    "mrr": 0.3708
-  },
-  "finetuned_minilm": {
-    "recall@10": 0.5,
-    "mrr": 0.3563
-  },
-  "improvement": {
-    "recall@10": 0.0,
-    "mrr": -0.0145
+  "eval_set_size": 3537,
+  "corpus_size": 14502,
+  "base_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "finetuned_model": "/Users/momo/Desktop/GEN AI/Finsearch Project/FinSearch_Intent_Aware_Financial_Document_Intelligence-/fine_tuning/minilm_finetuned",
+  "metrics": {
+    "base": {
+      "NDCG@10": 0.4934,
+      "MRR@10": 0.4404,
+      "Recall@10": 0.661
+    },
+    "finetuned": {
+      "NDCG@10": 0.7259,
+      "MRR@10": 0.6788,
+      "Recall@10": 0.8725
+    },
+    "deltas": {
+      "NDCG@10": 0.2325,
+      "MRR@10": 0.2384,
+      "Recall@10": 0.2115
+    }
   },
   "winner": "Fine-Tuned MiniLM"
 }
