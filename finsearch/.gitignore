@@ -1,0 +1,13 @@
+# Large model files — copy locally, don't commit
+models/
+
+# Generated index files — rebuilt from PDFs
+index/faiss_index.bin
+index/corpus.csv
+index/manifest.json
+index/query_log.jsonl
+
+# Python
+__pycache__/
+*.pyc
+.env
