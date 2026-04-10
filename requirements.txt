@@ -22,5 +22,3 @@ numpy>=1.26.0
 rank-bm25>=0.2.2
 matplotlib>=3.8.0
 tqdm>=4.66.0
-
-
