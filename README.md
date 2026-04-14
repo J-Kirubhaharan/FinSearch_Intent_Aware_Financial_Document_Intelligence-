@@ -1,249 +1,742 @@
-# Healthcare Decision Intelligence Agent
-### Predicting 30-Day Heart Failure Readmission with Explainable ML, RAG, and Generative AI
+# FinSearch: Intent-Aware Financial Document Intelligence
 
-DS 5500 — Capstone: Applications in Data Science  
-Team 20 | Abdul Sameer Shaik | Kirubhaharan Joseph Abraham  
-Instructor: Dr. Fatema Nafa | Northeastern University | Spring 2026
+## About the Project
 
----
+FinSearch is an end-to-end Retrieval-Augmented Generation (RAG) system built for the financial domain. It enables users to ask natural language questions against a knowledge base of 41 financial PDFs — spanning regulatory law, consumer protection guidelines, payment industry standards, and internal bank policies — and receive grounded, cited answers with a confidence score.
 
-## What This Project Does
+The project was developed as a research and engineering exercise, progressing from a BM25 keyword baseline through dense retrieval, hybrid retrieval, LLM reranking, fine-tuning, and intent classification — culminating in a production Streamlit chatbot with Role-Based Access Control (RBAC), personal account context injection, and iterative prompt engineering.
 
-Heart failure patients are frequently readmitted to the hospital within 30 days of discharge — and in many cases, that readmission could have been prevented. The problem is that most hospitals either don't have a good way to identify which patients are truly high-risk before they leave, or if they do have a risk score, it's just a number with no explanation attached to it.
+### Who Are the Users?
 
-This project builds a full system that addresses both sides of the problem. It predicts which heart failure patients are likely to be readmitted within 30 days, explains why using SHAP feature attribution, and then uses a Retrieval-Augmented Generation (RAG) pipeline with Google Gemini to write two different reports from the same patient data — one for the doctor with clinical language, and one for the patient in plain English they can actually understand.
+FinSearch is designed for five types of users within a financial institution:
 
-Everything is served through a web application where clinicians can look up any patient, run a live triage for a new admission, and patients can ask follow-up questions through a simple chatbot.
+| Role | Description |
+|------|-------------|
+| **👤 Customer** | Retail banking customer — asks about their own transactions, disputes, payment declines, and consumer rights |
+| **🎧 Support Agent** | Bank support staff — looks up policies, regulations, and dispute procedures to assist customers |
+| **🔍 Fraud Investigator** | Internal fraud team — accesses AML policies, unauthorized transaction investigation guides, and account takeover procedures |
+| **🏪 Merchant** | Business/merchant — asks about payment failures, PSD2 compliance, chargeback rules, and error codes |
+| **⚖️ Dispute Resolver** | Internal disputes team — tracks SLA deadlines, provisional credit requirements, and resolution procedures |
 
----
-
-## Project Status
-
-- Data loading, cohort construction, feature engineering, and preprocessing are complete (Notebooks 01–04)
-- Model training across 5 experimental steps is complete, final model selected (Notebook 05)
-- SHAP explainability analysis with global and per-patient visualizations is complete (Notebook 06)
-- RAG retrieval pipeline with ChromaDB semantic vector store is complete (Notebooks 07, 07b)
-- Batch LLM generation for 2,263 patients using Gemini 2.5 Flash is complete (Notebook 08)
-- Multi-dimensional LLM evaluation including BERTScore and Flesch readability is complete (Notebook 09)
-- Full-stack web application with FastAPI backend and VanillaJS frontend is complete
-- Final technical report and presentation are complete
+Each role sees only the documents and information relevant to their function. Sensitive internal documents (fraud investigation procedures, AML workflows, chargeback management internals) are inaccessible to customers and merchants.
 
 ---
 
-## The Dataset
+## Dataset
 
-We used MIMIC-IV, a publicly available and fully de-identified electronic health record database from Beth Israel Deaconess Medical Center in Boston, covering hospital admissions from 2008 to 2019. Access requires completing a data use agreement through PhysioNet — the data is IRB-exempt because it contains no personally identifiable information.
-
-We filtered the full database down to heart failure patients by looking for the relevant ICD diagnosis codes. After removing records with data quality issues, patients who died in hospital, and patients who died within 30 days of discharge (since they can't be readmitted), we ended up with 4,508 admissions from 4,074 unique patients. About 21.5% of them were readmitted within 30 days.
-
----
-
-## How the Pipeline Works
-
-### Step 1 — Data Loading
-All MIMIC-IV tables are loaded into a DuckDB database. This makes SQL-based queries fast and keeps everything in one place without needing a full database server.
-
-### Step 2 — Cohort Construction
-We identified heart failure admissions using ICD-9 code 428.x and ICD-10 code I50.x, then carefully removed edge cases that would introduce data leakage into the labels — specifically patients who died during the admission or within 30 days after discharge.
-
-### Step 3 — Feature Engineering
-We built 146 features organized into six groups:
-
-| Group | What it includes |
-|---|---|
-| Lab values | First, last, min, max, and change (last minus first) for 14 lab tests — 56 features total |
-| Medications | GDMT drug flags (loop diuretics, beta-blockers, ACE/ARB, etc.), GDMT composite score, furosemide dose, unique drug count |
-| Demographics | Age, gender |
-| Admission details | Admission type, insurance, marital status, race, discharge location |
-| Administrative | Length of stay, number of prior admissions, number of ICD diagnoses |
-| Comorbidities | Diabetes, CKD, COPD, atrial fibrillation, hypertension |
-| Vital signs | Mean heart rate, blood pressure, oxygen saturation, respiratory rate |
-
-The lab change features (creatinine rising, for example) were particularly important because they capture how a patient's condition was trending during the stay, not just a snapshot.
-
-### Step 4 — Preprocessing
-Numerical columns were imputed with medians computed on the training set only. Categorical columns were filled with the string 'UNKNOWN' rather than mode imputation, because the fact that something is unknown is itself a signal. We then applied one-hot encoding and did a stratified 80/20 train/test split.
-
-### Step 5 — Model Training
-
-We ran five rounds of experiments to find the best model:
-
-| Step | Model | AUC-ROC | F1 | What we learned |
-|---|---|---|---|---|
-| Baseline | Majority class | 0.500 | 0.215 | Reference point |
-| 5A | Logistic Regression, all 146 features | 0.6305 | 0.3911 | Decent start |
-| 5A | Gradient Boosting, all 146 features | 0.6065 | 0.1545 | GB completely failed on the minority class |
-| 5B | LR + SelectKBest (top 50 features) | 0.6559 | 0.4056 | Biggest gain in the whole experiment |
-| 5C | LR + SMOTE oversampling | 0.6448 | 0.4000 | SMOTE added noise and made things slightly worse |
-| 5D | LR + GridSearchCV tuning | 0.5987 | 0.3614 | Overfitting to cross-validation folds |
-| 5E | LR + XGBoost ensemble | ~0.670 | ~0.410 | Small gain, too complex for the benefit |
-| **Final** | **LR + SelectKBest (k=50)** | **0.6739** | **0.4142** | Best overall |
-
-The final model uses Logistic Regression with C=0.1, L2 penalty, balanced class weighting, and SelectKBest with k=50. We chose logistic regression over more complex models for three reasons: the dataset is not large enough for deep learning, clinical interpretability is a hard requirement, and logistic regression allows exact SHAP computation without any approximation.
-
-### Step 6 — SHAP Explainability
-For logistic regression, the SHAP value for each feature is simply the model coefficient multiplied by the scaled feature value. This is exact — no sampling or approximation needed. We generated summary plots, beeswarm plots, per-patient waterfall charts, and a medication impact chart. The top risk drivers across the cohort were creatinine change, number of prior admissions, length of stay, furosemide dose, and GDMT score.
-
-### Step 7 and 7b — RAG Pipeline
-We embedded all 4,508 MIMIC-IV discharge summaries using Sentence Transformers (all-MiniLM-L6-v2), producing 384-dimensional vectors, and stored them in a ChromaDB vector store. When a patient is analyzed, the system retrieves the top 3 most semantically similar past discharge summaries using cosine similarity and injects them into the Gemini prompt as clinical context. This grounds the AI-generated reports in real clinical language rather than letting the model hallucinate.
-
-### Step 8 — LLM Generation
-Google Gemini 2.5 Flash receives the patient's risk probability, their top 3 SHAP drivers, and the RAG-retrieved clinical context. It returns a structured JSON with six fields:
-
-- `doctor_alert` — risk level (HIGH/MEDIUM/LOW) and a 2-3 sentence clinical summary for the attending physician
-- `doctor_precautions` — four specific clinical interventions the doctor should take
-- `patient_precautions` — four plain-language steps the patient can understand and act on
-- `follow_up_recommendations` — hospital-side logistics for the care team
-- `patient_follow_up` — what the patient personally needs to do after discharge
-
-We enforce JSON output via `response_mime_type='application/json'` which gave us 100% parseable output across all patients.
-
-### Step 9 — LLM Evaluation
-We evaluated the LLM outputs across six dimensions:
-
-| Metric | Value | Threshold | Result |
-|---|---|---|---|
-| AUC-ROC | 0.6739 | 0.65 | Pass |
-| Output completeness | 100% | 100% | Pass |
-| BERTScore F1 | 0.8410 | 0.75–0.92 | Pass |
-| Average Flesch Reading Ease (patient text) | 60.4 | 60 | Pass |
-| Risk level alignment with ground truth | 71.1% | 80% | Fair |
-| Records with Flesch score above 60 | 56.5% | 80% | Fail |
-
-The BERTScore of 0.8410 tells us that doctor and patient texts are semantically covering the same clinical situation but are written differently enough to confirm that the plain-language simplification is actually happening. The Flesch failure is our most significant quality gap — medically complex patients tend to get summaries with more clinical jargon bleeding through.
+| Dataset | Description | Used For |
+|---------|-------------|----------|
+| **FiQA** | 57K financial passages, 648 test queries with relevance judgements | All retrieval evaluation (BM25, dense, hybrid, reranking) |
+| **Banking77** | 10K labeled banking intent queries across 77 classes | Intent classifier training (mapped to 4 categories) |
+| **41 Financial PDFs** | Knowledge base across 4 categories (see below) | Chunking, fine-tuning, chatbot answers |
+| **Groq-generated questions** | 17,682 QA pairs generated by LLaMA-3.3-70B from the 41 PDFs; balanced via augmentation (T=0.7) to 14,145 training triplets | Fine-tuning retriever + intent classifier training
+| **Synthetic Users DB** | 50 synthetic bank customers with transactions, disputes, sessions | Customer personal context in the Streamlit chatbot |
 
 ---
 
-## The Web Application
+## Project Structure
 
-The app runs at `http://localhost:8000/app` and has four views:
-
-- **Dashboard** — shows total patients, admissions, readmission rate, and number of AI alerts generated
-- **Patient Analysis** — enter an admission ID to see the SHAP waterfall chart, doctor report, patient report, chatbot, and the RAG-retrieved clinical context
-- **Live Triage** — manually enter clinical features for a new patient to get a real-time risk score and Gemini report
-- **Model Information** — shows the pipeline configuration and all 50 selected features
-
-The patient chatbot is built into the Patient Analysis view. It sends the patient's full context (risk level, top SHAP drivers, care instructions, follow-up plan) with every message and responds in under 100 words in plain language. It's designed to be stateless — no session data is stored server-side.
-
-There's also a Mental Health Burden score computed from three proxy signals — number of prior admissions, number of unique medications, and length of stay. It's not a diagnosis; it's a flag to alert clinicians when a social work or psychiatry consultation might be warranted.
-
----
-
-## Testing
-
-We wrote 22 test cases across three levels:
-
-**Data pipeline unit tests (UT-01 to UT-08)** cover cohort size, readmission rate, lab change computation, missing value imputation, one-hot encoding, stratified split balance, feature alignment, and SelectKBest output shape.
-
-**Model unit tests (MT-01 to MT-07)** cover risk probability range, SHAP sum property, SHAP sort order, model reproducibility, artifact loading, zero-input stability, and column alignment with missing features.
-
-**API integration tests (IT-01 to IT-07)** cover patient lookup for pre-computed records, 404 for invalid IDs, live triage endpoint response, chatbot response length and format, Gemini rate limit handling, metrics endpoint, and JSON schema compliance.
+```
+FinSearch/
+├── baseline/                   # Week 1 — BM25 Baseline
+├── dense_retrieval/            # Week 2 — Dense Retrieval (4 models compared)
+├── hybrid/                     # Week 2 — Hybrid Retrieval (BM25 + Dense)
+├── finrerank/                  # Week 3 — LLM Reranking + Pipeline Comparison
+├── pdf_chunking/               # Chunking Strategy Evaluation (foundation)
+├── intent_classification/      # Intent Classifier (4-category routing)
+├── fine_tuning/                # Week 4 — Fine-Tuned MiniLM on PDF knowledge base
+├── final_chatbot/              # Week 4 — Final Chatbot (V1→V4 iterative improvement)
+│   ├── FinChatbot_v2_Colab.ipynb
+│   ├── v2_experiment.ipynb
+│   └── chatbot_results/        # All judged outputs + comparison charts
+├── Dataset/                    # FiQA corpus + PDF knowledge base
+├── config.py                   # Central path config
+├── requirements.txt
+├── visualization/              # All experiment comparison charts + generation script
+└── finsearch/                  # Streamlit production chatbot — 5 roles, RBAC, hybrid retrieval
+```
 
 ---
 
-## Running the Project
+## Knowledge Base
+
+41 financial PDFs across 4 categories:
+
+| Category | Description |
+|----------|-------------|
+| `Regulatory` | Central bank and securities regulation documents |
+| `Consumer_Protection` | Financial consumer protection guidelines |
+| `Payment_Industry` | Payment systems and card network standards |
+| `Synthetic_Policies` | Complaint procedures and internal policy documents |
+
+---
+
+## PDF Chunking Strategy — Foundation
+
+**Goal:** Find the best way to split financial PDFs into retrieval-ready chunks before any retrieval experiment.  
+**Files:** `pdf_chunking/PDF_Chunking.ipynb`  
+**Corpus:** 4 representative PDFs (1 per category), evaluated on 20 synthetic QA pairs.
+
+5 strategies evaluated with MiniLM and BGE-Large:
+
+| Strategy | Description | MiniLM Recall@10 | BGE-Large Recall@10 |
+|----------|-------------|:---:|:---:|
+| S1 | Sliding window — 512 words | 0.35 | 0.35 |
+| S2 | Sliding window — 256 words | 0.40 | 0.40 |
+| S3 | Paragraph-based | 0.30 | 0.35 |
+| **S4** | **Token-Exact 200/400 tokens** | **0.75** | **0.80 ✓ Winner** |
+| S5 | Section-aware 200/400 | 0.60 | 0.75 |
+
+**Winner: S4 Token-Exact (400 tokens, 100 overlap) — Recall@10 = 0.80**
+
+> Token-exact chunking uses a HuggingFace tokenizer to split on exact token boundaries with zero truncation. Word-count methods silently cut mid-sentence; token-exact preserves full semantic units in formal regulatory language.
+
+---
+
+## Week 1 — BM25 Baseline
+
+**Goal:** Establish a keyword-search baseline on the FiQA financial QA dataset.  
+**Files:** `baseline/Baseline_model.ipynb`
+
+| Model | NDCG@10 | MRR | Recall@10 | Queries |
+|-------|:-------:|:---:|:---------:|:-------:|
+| BM25 (k1=1.2, b=0.75) | 0.2169 | 0.2706 | 0.2784 | 648 |
+
+BM25 struggles with synonym mismatch — user says "returns", document says "yield". This established the floor to beat.
+
+---
+
+## Week 2 — Dense Retrieval (4 Models Compared)
+
+**Goal:** Replace keyword search with semantic vector search and find the best dense encoder.  
+**Files:** `dense_retrieval/Dense_Retrieval.ipynb`, `finrerank/FinDomain_ModelComparison.ipynb`
+
+4 dense models were evaluated on a stratified FiQA sub-corpus (194 queries, same random seed):
+
+| Model | Params | Dim | NDCG@10 | MRR | Recall@10 |
+|-------|:------:|:---:|:-------:|:---:|:---------:|
+| `all-MiniLM-L6-v2` | 22M | 384 | 0.5821 | 0.6721 | 0.6468 |
+| `BAAI/bge-base-en-v1.5` | 109M | 768 | 0.5817 | 0.6549 | 0.6570 |
+| `intfloat/e5-small-v2` | 33M | 384 | 0.5634 | 0.6394 | 0.6323 |
+| **`BAAI/bge-large-en-v1.5`** | **335M** | **1024** | **0.6355** | **0.6990** | **0.7258** |
+
+**Winner: BGE-Large-EN-v1.5**
+
+> BGE-Large outperforms others due to its larger capacity (1024-dim vs 384-dim) and training on MS-MARCO + financial-style corpora. E5-Small was the weakest despite having the same dimension as MiniLM — the quality of pre-training data matters more than parameter count alone.
+
+**Reference — MiniLM on full corpus (648 queries):**
+
+| Model | NDCG@10 | MRR | Recall@10 |
+|-------|:-------:|:---:|:---------:|
+| BM25 Baseline | 0.2169 | 0.2706 | 0.2784 |
+| MiniLM Dense (full 648 q) | 0.3687 | 0.4451 | 0.4413 |
+
+Dense retrieval alone gives **+70% NDCG@10** over BM25.
+
+---
+
+## Week 2 — Hybrid Retrieval
+
+**Goal:** Combine BM25 (lexical) and dense (semantic) retrieval for best of both.  
+**Files:** `hybrid/Hybrid_RRF.ipynb`
+
+Two fusion methods compared — alpha-weighted interpolation and Reciprocal Rank Fusion (RRF):
+
+| Method | NDCG@10 | MRR | Recall@10 |
+|--------|:-------:|:---:|:---------:|
+| BM25 Baseline | 0.2169 | 0.2706 | 0.2784 |
+| MiniLM Dense | 0.3687 | 0.4451 | 0.4413 |
+| Hybrid RRF (k=60) | 0.3519 | 0.4171 | 0.4396 |
+| **Hybrid Alpha (α=0.7)** | **0.3791** | **0.4606** | **0.4473** |
+
+Alpha sweep result — α=0.7 (70% dense + 30% BM25) is the optimal balance:
+
+| α | NDCG@10 | | α | NDCG@10 |
+|---|:-------:|-|---|:-------:|
+| 0.1 | 0.2656 | | 0.6 | 0.3748 |
+| 0.3 | 0.3084 | | **0.7** | **0.3791** |
+| 0.5 | 0.3593 | | 0.9 | 0.3735 |
+
+> RRF underperforms alpha-interpolation here because RRF ignores score magnitudes — it only uses rank positions, which discards confidence information that the dense model captures well.
+
+---
+
+## Week 3 — LLM Reranking + Query Expansion
+
+**Goal:** Add query expansion and LLM-based reranking on top of the best dense retriever (BGE-Large).  
+**Files:** `finrerank/FinChatbot.ipynb`, `finrerank/FinPipeline_Comparison.ipynb`
+
+### What Was Built
+
+```
+User Query
+    │
+    ▼
+[1] Query Expansion ──────── Groq LLaMA 3.3 70B
+    │  Appends 8–12 financial synonyms/related terms to the query
+    │  e.g. "returns" → "returns yield dividend payout equity income"
+    │
+    ▼
+[2] Dense Retrieval ─────── BGE-Large-EN-v1.5 (1024-dim) FAISS
+    │  Top-50 candidate passages retrieved
+    │
+    ▼
+[3] LLM Reranking ──────── [compared Groq LLaMA vs Mistral Large]
+    │  Sends top-20 passages to LLM with prompt:
+    │  "Return a JSON array of passage numbers sorted most to least relevant"
+    │  Takes top-10 after reranking
+    │
+    ▼
+[4] Answer Generation ───── Groq LLaMA 3.3 70B
+    │  "Answer using ONLY the provided documents"
+    │
+    ▼
+[5] Confidence Score ────── DeBERTa-v3-small NLI CrossEncoder
+       Retrieval confidence  = mean(normalized retrieval scores)       → weight 40%
+       Faithfulness          = NLI entailment(document, answer)        → weight 60%
+       Final label           = HIGH (≥0.7) / MED (≥0.4) / LOW (<0.4)
+```
+
+### Reranker Comparison: Groq vs Mistral
+
+Two rerankers were tried head-to-head:
+
+| Reranker | NDCG@10 | MRR | Recall@10 |
+|----------|:-------:|:---:|:---------:|
+| Groq LLaMA 3.3 70B | 0.3791* | 0.4606 | 0.4473 |
+| **Mistral Large 2411** | **0.3885** | **0.4775** | **0.4485** |
+
+> *Groq reranker was the same model used for answer generation — convenient but not specialized. Mistral Large 2411 performed better as a reranker because it is more instruction-following and precise in returning structured JSON rankings.
+
+**Winner: Mistral Large 2411 as reranker**
+
+### 4-Pipeline Comparison (194 queries, with QE + Mistral rerank)
+
+| Pipeline | Retrieval Model | Strategy | NDCG@10 | MRR | Recall@10 |
+|----------|----------------|----------|:-------:|:---:|:---------:|
+| A1 | MiniLM (384-dim) | Dense | 0.5917 | 0.6607 | 0.6724 |
+| A2 | MiniLM (384-dim) | Hybrid α=0.7 | 0.5813 | 0.6685 | 0.6513 |
+| **B1** | **BGE-Large (1024-dim)** | **Dense** | **0.6056** | **0.6679** | **0.6917** |
+| B2 | BGE-Large (1024-dim) | Hybrid α=0.7 | 0.5381 | 0.6243 | 0.5984 |
+
+**Best pipeline: B1 — BGE-Large Dense + Query Expansion + Mistral Rerank + LLaMA Answer**
+
+> Hybrid retrieval (B2) actually hurts BGE-Large — the model is strong enough on its own that adding BM25 introduces noise. Hybrid helps weaker models (A1 vs A2 is closer) but not a well-trained large encoder.
+
+### Full Progression Across All Weeks
+
+| Stage | Model | NDCG@10 | MRR | Recall@10 |
+|-------|-------|:-------:|:---:|:---------:|
+| Week 1 | BM25 Baseline | 0.2169 | 0.2706 | 0.2784 |
+| Week 2 | MiniLM Dense | 0.3687 | 0.4451 | 0.4413 |
+| Week 3 | Hybrid α=0.7 | 0.3791 | 0.4606 | 0.4473 |
+| Week 4 | Hybrid + Mistral Rerank | 0.3885 | 0.4775 | 0.4485 |
+| **Week 4** | **B1 Full Pipeline (sub-corpus)** | **0.6056** | **0.6679** | **0.6917** |
+
+> NDCG@10 improvement from BM25 baseline to B1 full pipeline: **+179%**
+
+---
+
+## Intent Classification
+
+**Goal:** Route user queries to the correct knowledge-base category before retrieval.  
+**Files:** `intent_classification/FinIntent_Classifier.ipynb`, `intent_classification/FinIntent_DataPrep.ipynb`
+
+3 classifiers compared on 4 categories (Regulatory, Consumer Protection, Payment Industry, Synthetic Policies):
+
+| Model | Training Data | Banking77 Acc | QA Eval Acc (120 q) |
+|-------|--------------|:-------------:|:-------------------:|
+| Zero-Shot DeBERTa NLI | None | 25.5% | 5.0% |
+| Fine-Tuned MiniLM — PDF Only | 600 Groq PDF questions | 73.5% | 75.8% |
+| **Fine-Tuned MiniLM — Full** | **Banking77 + Groq PDF** | **93.0%** | **90.0%** |
+
+**Winner: Fine-Tuned MiniLM on full dataset (Banking77 + PDF domain questions)**
+
+- Evaluation set: 120 held-out Groq questions (30 per category)
+- Saved to: `intent_classification/minilm_intent_classifier/`
+
+> Training on diverse data (Banking77 conversational + PDF-domain formal questions) generalizes better than PDF-only. Zero-Shot DeBERTa fails almost entirely on domain-specific routing — general NLI models are not suited for fine-grained financial category classification.
+
+### How Intent Classifier Integrates into the B1 Pipeline
+
+```
+User Query
+    │
+    ▼
+┌─────────────────────────────────────────────────────┐
+│  Fine-Tuned MiniLM Intent Classifier                │
+│  (Banking77 + Groq PDF, 90% QA accuracy)            │
+│                                                     │
+│  → Regulatory           → Consumer Protection       │
+│  → Payment Industry     → Synthetic Policies        │
+└──────────────────┬──────────────────────────────────┘
+                   │  Predicted category
+                   ▼
+┌─────────────────────────────────────────────────────┐
+│  Category-Filtered Knowledge Base                   │
+│  41 PDFs → S4 Token-Exact chunks (400 tokens)       │
+│  Only the relevant category's FAISS index is used   │
+└──────────────────┬──────────────────────────────────┘
+                   │
+                   ▼
+┌─────────────────────────────────────────────────────┐
+│  B1 Retrieval Pipeline                              │
+│                                                     │
+│  [1] Query Expansion   — Groq LLaMA 3.3 70B         │
+│  [2] Dense Retrieval   — BGE-Large FAISS (Top-50)   │
+│  [3] LLM Reranking     — Mistral Large (Top-10)     │
+│  [4] Answer Generation — Groq LLaMA 3.3 70B         │
+│  [5] Confidence Score  — DeBERTa NLI (HIGH/MED/LOW) │
+└──────────────────┬──────────────────────────────────┘
+                   │
+                   ▼
+          Grounded Financial Answer
+          + Confidence Label
+```
+
+**Why routing matters:** Without intent classification, the retrieval searches across all 41 PDFs (4 categories mixed). With routing, it searches only the relevant category — reducing noise, improving precision, and cutting retrieval latency.
+
+---
+
+## Week 4 — Fine-Tuning, Reranker Selection & Final Chatbot
+
+### Step 1 — Fine-Tuning MiniLM on the PDF Knowledge Base
+
+**Goal:** Adapt a general-purpose encoder to the financial domain by training directly on (question, chunk) pairs generated from the 41 PDFs.  
+**Files:** `fine_tuning/FinMiniLM_FineTune_Colab.ipynb`, `fine_tuning/FinMiniLM_Eval.ipynb`
+
+**Training setup:**
+- Base model: `sentence-transformers/all-MiniLM-L6-v2`
+- Training data: 17,682 QA pairs generated from 41 PDFs via LLaMA-3.3-70B (Groq). Class imbalance (Regulatory: 7,941 vs Consumer Protection: 629, Synthetic Policies: 182) corrected via temperature-controlled regeneration (T=0.7) to ~2,000 pairs each. After stratified 80/20 split, 14,145 training pairs with FAISS-based hard negative mining → 14,145 triplets used with MultipleNegativesRankingLoss.
+- Loss: MultipleNegativesRankingLoss
+- Evaluated on 200 stratified held-out queries from the PDF corpus
+
+**Result — Fine-Tuned vs Off-the-Shelf on PDF knowledge base:**
+
+| Model | NDCG@10 | MRR@10 | Recall@3 |
+|-------|:-------:|:------:|:--------:|
+| MiniLM (off-the-shelf) | 0.6531 | 0.6812 | 0.5900 |
+| **Fine-Tuned MiniLM** | **0.7381** | **0.7654** | **0.6750** |
+
+> Fine-tuning on domain-specific (question, chunk) pairs gives **+13% NDCG@10**. The model learns the exact vocabulary, regulatory phrasing, and document structure of the 41 PDFs — things a general-purpose encoder trained on MS-MARCO cannot capture.
+
+---
+
+### Step 2 — Reranker Experiment: Cross-Encoder vs Mistral vs Query Expansion
+
+**Goal:** Find the best reranker to sit on top of the fine-tuned MiniLM retriever.  
+**Files:** `final_chatbot/v2_experiment.ipynb`
+
+**Setup:** 200 stratified queries, 6 pipelines tested — Cross-Encoder and Mistral Large, each with and without Query Expansion (QE via LLaMA-3).
+
+| Pipeline | Reranker | QE | NDCG@10 | MRR@10 | Recall@3 |
+|----------|----------|----|:-------:|:------:|:--------:|
+| Fine-Tuned MiniLM only | None | No | 0.7381 | 0.7654 | 0.6750 |
+| + Cross-Encoder | ms-marco-MiniLM-L-6-v2 | No | **0.7423** | **0.7701** | **0.6850** |
+| + Mistral Large | mistral-large-2411 | No | 0.6188 | 0.6541 | 0.5900 |
+| + Cross-Encoder | ms-marco-MiniLM-L-6-v2 | Yes | 0.6521 | 0.6812 | 0.6100 |
+| + Mistral Large | mistral-large-2411 | Yes | 0.5901 | 0.6234 | 0.5450 |
+
+**Winner: Fine-Tuned MiniLM + Cross-Encoder, no Query Expansion (NDCG@10 = 0.7423)**
+
+> **Why Mistral failed as reranker:** Financial regulatory chunks are highly similar in vocabulary and structure. Listwise LLM ranking suffers from position bias and cannot reliably distinguish between passages that all use formal regulatory language. Cross-Encoder compares query and passage directly as a pair — far more precise for this domain.
+
+> **Why QE hurt all pipelines:** The fine-tuned MiniLM was trained on concise domain-specific questions. Expanding queries with synonyms and related terms pushes the query embedding away from the distribution the model was fine-tuned on, degrading retrieval quality consistently (~0.09 NDCG drop across all pipelines).
+
+---
+
+### Step 3 — Final Chatbot Development: Iterative Prompt Improvement (V1 → V4)
+
+**Goal:** Build a production-quality financial chatbot with empathy, citations, OOS handling, and confidence scoring. Improve answer quality through structured prompt engineering, evaluated by LLM-as-Judge.  
+**Files:** `final_chatbot/FinChatbot_v2_Colab.ipynb`
+
+**Evaluation setup:**
+- 30 LLM-generated questions (25 in-scope + 5 OOS) across all 4 categories
+- LLM-as-Judge (LLaMA-3.3-70B) scores each response on: Faithfulness (1–5), Completeness (1–5), Tone (1–5), Citation (yes/no)
+- OOS accuracy: whether the chatbot correctly refused out-of-scope questions
+
+**What changed in each version:**
+
+| Version | Key Change |
+|---------|-----------|
+| V1 | Base pipeline — basic system prompt with empathy and citation instructions |
+| V2 | Explicit citation rule with exact format `[Source: doc_name]` as highest priority |
+| V3 | Stronger completeness and tone rules, multiple competing instructions |
+| V4 | Citation-first 3-rule prompt + post-processing citation injection + judge truncation fix (600→1200 chars) |
+
+**LLM-as-Judge Results — All Versions:**
+
+| Version | Faithfulness /5 | Completeness /5 | Tone /5 | Citation % | OOS Acc. |
+|---------|:--------------:|:---------------:|:-------:|:----------:|:--------:|
+| V1 (original) | 3.17 | 2.79 | 4.92 | 37.5% | 83.3% |
+| V2 (citation fix) | 3.33 | 3.08 | 4.79 | 70.8% | 83.3% |
+| V3 (tone fix) | 3.33 | 3.04 | 4.92 | 66.7% | 83.3% |
+| **V4 (final)** | **3.75** | **3.75** | 4.71 | **75.0%** | **83.3%** |
+
+**V1 → V4 Net Improvement:**
+
+| Metric | V1 | V4 | Change |
+|--------|----|----|--------|
+| Faithfulness | 3.17 | 3.75 | **+0.58** |
+| Completeness | 2.79 | 3.75 | **+0.96** |
+| Tone | 4.92 | 4.71 | -0.21 (still excellent) |
+| Citation Rate | 37.5% | 75.0% | **+37.5%** |
+| OOS Accuracy | 83.3% | 83.3% | +0.0% |
+
+> **Key insight on citations:** LLMs deprioritize format rules when generating long answers with many competing instructions. V4 solves this with two layers — (1) citation as the first and most explicit rule in the system prompt, (2) post-processing injection that guarantees `[Source: doc_name]` appears on every factual sentence regardless of what the model generated.
+
+> **Key insight on QE:** Query expansion consistently hurt retrieval performance because the fine-tuned model was trained on concise financial questions. Expanding queries moves embeddings away from the fine-tuned distribution.
+
+---
+
+## Final Chatbot Pipeline
+
+```
+User Query
+    │
+    ▼
+┌────────────────────────────────────────────────────────────┐
+│  Fine-Tuned MiniLM Intent Classifier                       │
+│  (Banking77 + PDF domain, 90% QA accuracy)                 │
+│                                                            │
+│  Confidence ≥ 0.60 → route to category                     │
+│  Confidence < 0.60 → OOS → polite refusal to human advisor │
+└──────────────────────┬─────────────────────────────────────┘
+                       │  In-scope query + predicted category
+                       ▼
+┌────────────────────────────────────────────────────────────┐
+│  Fine-Tuned MiniLM Retriever                               │
+│  Trained on (question, chunk) pairs from 41 PDFs           │
+│  → FAISS search, top-20 candidates (cosine similarity)     │
+└──────────────────────┬─────────────────────────────────────┘
+                       │  Top-20 candidate chunks
+                       ▼
+┌────────────────────────────────────────────────────────────┐
+│  Cross-Encoder Reranker                                    │
+│  ms-marco-MiniLM-L-6-v2                                    │
+│  → Scores each (query, chunk) pair directly                │
+│  → Returns top-3 most relevant chunks                      │
+└──────────────────────┬─────────────────────────────────────┘
+                       │  Top-3 chunks with document names
+                       ▼
+┌────────────────────────────────────────────────────────────┐
+│  Answer Generation — LLaMA-3.3-70B (OpenRouter)            │
+│  V4 Prompt Strategy:                                       │
+│    Rule 1: Every factual sentence → [Source: doc_name]     │
+│    Rule 2: Structure — empathy open → facts → warm close   │
+│    Rule 3: Use ONLY provided excerpts, never fabricate      │
+│  + Post-processing citation injection (safety net)         │
+└──────────────────────┬─────────────────────────────────────┘
+                       │  Raw answer with citations
+                       ▼
+┌────────────────────────────────────────────────────────────┐
+│  DeBERTa NLI Confidence Scorer                             │
+│  cross-encoder/nli-deberta-v3-small                        │
+│                                                            │
+│  Retrieval confidence  = mean(normalised FAISS scores) ×40%│
+│  Faithfulness score    = NLI entailment(chunk, answer) ×60%│
+│  Final score           = weighted sum                      │
+│                                                            │
+│  HIGH  ≥ 0.70 → answer shown as-is                        │
+│  MED   ≥ 0.40 → transparency warning prepended            │
+│  LOW   < 0.40 → strong caution + recommend human advisor   │
+└──────────────────────┬─────────────────────────────────────┘
+                       │
+                       ▼
+          Grounded Financial Answer
+          with Citations + Confidence Label
+```
+
+**Retrieval performance of the final pipeline (200 queries, PDF knowledge base):**
+
+| Component | Model | NDCG@10 | MRR@10 | Recall@3 |
+|-----------|-------|:-------:|:------:|:--------:|
+| Retriever | Fine-Tuned MiniLM | 0.7381 | 0.7654 | 0.6750 |
+| + Reranker | + Cross-Encoder | **0.7423** | **0.7701** | **0.6850** |
+
+**Chatbot quality of the final pipeline (30 questions, LLM-as-Judge):**
+
+| Metric | Score |
+|--------|-------|
+| Faithfulness | 3.75 / 5 |
+| Completeness | 3.75 / 5 |
+| Tone & Empathy | 4.71 / 5 |
+| Citation Rate | 75.0% |
+| OOS Accuracy | 83.3% |
+
+---
+
+## Models Used Across the Project
+
+| Role | Model | Where |
+|------|-------|--------|
+| Dense retrieval — baseline | `sentence-transformers/all-MiniLM-L6-v2` | Local |
+| Dense retrieval — compared | `BAAI/bge-base-en-v1.5` | Local |
+| Dense retrieval — compared | `intfloat/e5-small-v2` | Local |
+| Dense retrieval — compared | `BAAI/bge-large-en-v1.5` | Local |
+| **Fine-tuned retriever (final)** | Fine-tuned `all-MiniLM-L6-v2` on PDF corpus | Local (saved) |
+| Query expansion (experiment) | `meta-llama/llama-3.3-70b-instruct` | OpenRouter |
+| LLM reranker — compared | `mistralai/mistral-large-2411` | OpenRouter |
+| **Cross-Encoder reranker (final)** | `cross-encoder/ms-marco-MiniLM-L-6-v2` | Local |
+| Answer generation | `meta-llama/llama-3.3-70b-instruct` | OpenRouter |
+| NLI confidence scorer | `cross-encoder/nli-deberta-v3-small` | Local |
+| Intent classifier | Fine-tuned `all-MiniLM-L6-v2` on Banking77 + PDF | Local (saved) |
+| Question generation (data) | `llama3-8b-8192` | Groq API |
+| LLM-as-Judge (evaluation) | `meta-llama/llama-3.3-70b-instruct` | OpenRouter |
+
+---
+
+## Quick Start
+
+### 1. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Set API keys
+Create a `.env` file in the repo root:
+```
+OPENROUTER_API_KEY=your_key_here
+GROQ_API_KEY=your_key_here
+```
+
+### 3. Run experiments in order
+
+| Step | Notebook | Purpose |
+|------|----------|---------|
+| 0 | `pdf_chunking/PDF_Chunking.ipynb` | Chunking strategy evaluation |
+| 1 | `baseline/Baseline_model.ipynb` | BM25 baseline |
+| 2 | `dense_retrieval/Dense_Retrieval.ipynb` | MiniLM dense retrieval |
+| 2b | `finrerank/FinDomain_ModelComparison.ipynb` | Compare 4 dense models |
+| 3 | `hybrid/Hybrid_RRF.ipynb` | Hybrid BM25 + Dense |
+| 4 | `finrerank/FinChatbot.ipynb` | QE + reranker + answer + confidence |
+| 4b | `finrerank/FinPipeline_Comparison.ipynb` | Compare all 4 pipelines |
+| 5a | `intent_classification/FinIntent_DataPrep.ipynb` | Generate training data |
+| 5b | `intent_classification/FinIntent_Classifier.ipynb` | Train intent classifier |
+| 6a | `fine_tuning/FinMiniLM_FineTune_Colab.ipynb` | Fine-tune MiniLM on PDF corpus (run on Colab) |
+| 6b | `fine_tuning/FinMiniLM_Eval.ipynb` | Evaluate fine-tuned vs off-the-shelf |
+| 7a | `final_chatbot/v2_experiment.ipynb` | Reranker experiment: Cross-Encoder vs Mistral ± QE |
+| 7b | `final_chatbot/FinChatbot_v2_Colab.ipynb` | Final chatbot V1→V4 + LLM-as-Judge evaluation (run on Colab) |
+
+### 4. Generate comparison charts
+```bash
+cd visualization
+python3 experiment_visualization.py
+# Saves 4 charts to: visualization/
+```
+
+---
+
+## Visualizations
+
+All experiment comparison charts are in [`visualization/`](visualization/):
+
+| Chart | Description |
+|-------|-------------|
+| [`01_all_experiments_comparison.png`](visualization/01_all_experiments_comparison.png) | 4-panel master chart — retrieval stages, full pipelines, chunking, intent classifier |
+| [`02_metrics_table.png`](visualization/02_metrics_table.png) | All experiments in one metrics table, color-coded by week |
+| [`03_ndcg_progression.png`](visualization/03_ndcg_progression.png) | NDCG@10 improvement from BM25 → full pipeline |
+| [`04_recall_all_experiments.png`](visualization/04_recall_all_experiments.png) | Recall@10 across all experiments side by side |
+
+---
+
+## FinSearch — Production Streamlit Chatbot
+
+**Files:** `finsearch/`
+
+FinSearch is a production-grade Streamlit chatbot that brings the final V4 RAG pipeline to life with five distinct user roles, Role-Based Access Control (RBAC), personal account context injection, and hybrid retrieval — all running locally on CPU.
+
+### Application Structure
+
+```
+finsearch/
+├── app.py                  # Main Streamlit entry point
+├── config.py               # Central config — model paths, thresholds, API keys
+├── .env                    # API key (gitignored — never committed)
+├── requirements.txt        # Python dependencies
+│
+├── pipeline/               # Core RAG pipeline
+│   ├── intent.py           # Intent classification (fine-tuned MiniLM)
+│   ├── retrieval.py        # Hybrid retrieval — FAISS + BM25, alpha=0.7
+│   ├── reranker.py         # Cross-Encoder reranker (ms-marco-MiniLM-L-6-v2)
+│   ├── generator.py        # LLaMA-3.3-70B answer generation (V4 prompts)
+│   ├── confidence.py       # DeBERTa NLI confidence scorer
+│   └── chatbot.py          # Master pipeline — wires all steps + query logging
+│
+├── rbac/                   # Role-Based Access Control
+│   ├── roles.py            # 5 role definitions — categories, docs, blocked patterns
+│   └── access_control.py   # Chunk filter + blocked question checker
+│
+├── indexing/               # Incremental PDF indexing
+│   ├── chunker.py          # S4 token-exact chunking (400 tokens, 100 overlap)
+│   ├── embedder.py         # Fine-tuned MiniLM embedder
+│   └── index_manager.py    # build / update / load FAISS index
+│
+├── data/
+│   └── loader.py           # Loads users.db, transactions.csv, disputes.csv
+│
+├── ui/
+│   ├── landing.py          # Role selection + customer login screen
+│   ├── sidebar.py          # Role-specific data views + preset questions
+│   └── chat.py             # Chat rendering + confidence badge + source chips
+│
+├── knowledge_base/         # 41 financial PDFs (4 categories)
+│   ├── Consumer_Protection/
+│   ├── Payment_Industry/
+│   ├── Regulatory/
+│   └── Synthetic_Policies/
+│
+├── index/                  # Generated at runtime (gitignored)
+│   ├── faiss_index.bin     # FAISS vector index
+│   ├── corpus.csv          # Chunk texts + metadata
+│   └── manifest.json       # MD5 hash manifest for incremental indexing
+│
+└── models/                 # Local model files (gitignored — copy manually)
+    ├── minilm_finetuned/   # Fine-tuned MiniLM retriever
+    └── minilm_intent_classifier/  # Fine-tuned intent classifier
+```
+
+### Five User Roles
+
+| Role | Access | Personal Data |
+|------|--------|---------------|
+| 👤 Customer | Consumer protection, regulatory, customer-facing policies | Transactions + disputes |
+| 🎧 Support Agent | All 41 documents (full access) | None |
+| 🔍 Fraud Investigator | Fraud, AML, chargeback evidence, investigation policies | Fraud dispute queue |
+| 🏪 Merchant | Payment industry, PSD2, chargeback management | Transaction failure rates |
+| ⚖️ Dispute Resolver | Dispute procedures, regulatory deadlines, provisional credit | Overdue dispute queue |
+
+### How to Run
+
+**Prerequisites:** Python 3.11, models copied to `finsearch/models/`
 
 ```bash
-# Clone the repo
-git clone https://github.com/AbdulSameerS/Capstone_Healthcare_Decision_Intelligence_Agent.git
-cd Capstone_Healthcare_Decision_Intelligence_Agent
+# 1. Navigate to finsearch
+cd finsearch
 
-# Install dependencies
+# 2. Create Python 3.11 virtual environment
+/opt/homebrew/bin/python3.11 -m venv venv311
+source venv311/bin/activate
+
+# 3. Install dependencies
 pip install -r requirements.txt
 
-# Place MIMIC-IV tables in the dataset/ folder, then run the notebooks in order:
-# 01 → 02 → 03 → 04 → 05 → 06 → 07 → 07b → 08 → 09
+# 4. Add API key
+echo 'OPENROUTER_API_KEY=your_key_here' > .env
 
-# Set your Gemini API key
-export GEMINI_API_KEY="your_key_here"
+# 5. Copy fine-tuned models (from project root)
+mkdir -p models
+cp -r ../fine_tuning/minilm_finetuned models/
+cp -r ../intent_classification/minilm_intent_classifier models/
 
-# Start the backend
-uvicorn backend.main:app --reload --port 8000
+# 6. Build the FAISS index (first time only)
+python3 -m indexing.index_manager build
 
-# Open in browser
-# http://localhost:8000/app
+# 7. Launch the app
+streamlit run app.py --server.fileWatcherType none
 ```
 
-**Available API endpoints:**
-
-| Endpoint | Method | What it does |
-|---|---|---|
-| `/api/metrics` | GET | Dashboard population-level metrics |
-| `/api/patients` | GET | Lists available admission IDs |
-| `/api/patient/{hadm_id}` | GET | Full patient analysis with ML, SHAP, LLM, and RAG |
-| `/api/triage/baseline` | GET | Fetches a random patient for the live triage view |
-| `/api/triage/live` | POST | Real-time risk prediction and Gemini report |
-| `/api/chat` | POST | Patient chatbot |
-| `/api/model/info` | GET | Model configuration and selected features |
+> **Note:** `--server.fileWatcherType none` is required on macOS to prevent multiprocessing crashes with PyTorch models.
 
 ---
 
-## Repository Structure
+## Final Production Architecture
+
+The architecture below reflects the complete pipeline as deployed in the FinSearch Streamlit application — incorporating all production hardening decisions made after initial deployment.
 
 ```
-Capstone_Healthcare_Decision_Intelligence_Agent/
-├── Notebook/
-│   ├── 01_Data_Loading.ipynb
-│   ├── 02_Cohort_Construction.ipynb
-│   ├── 03_Feature_Engineering.ipynb
-│   ├── 03b_Medications_Vitals.ipynb
-│   ├── 04_Data_Preprocessing.ipynb
-│   ├── 05_Model_Training.ipynb
-│   ├── 06_SHAP.ipynb
-│   ├── 07_RAG_Retrieval.ipynb
-│   ├── 07b_Vector_RAG.ipynb
-│   ├── 08_RAG_LLM_Generation.ipynb
-│   └── 09_LLM_Evaluation.ipynb
-├── backend/
-│   ├── main.py
-│   └── utils_api.py
-├── frontend/
-│   ├── index.html
-│   ├── app.js
-│   └── styles.css
-├── dataset/
-│   ├── hf_project.duckdb
-│   └── RAG_data_summary.json
-├── model_artifacts.pkl
-├── llm_outputs_semantic.json
-├── rag_prompts_semantic.json
-├── DS5500_Final_Technical_Report.tex
-├── DS5500_Final_Presentation.md
-├── requirements.txt
-└── README.md
+User Query
+    │
+    ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Fine-Tuned MiniLM Intent Classifier                            │
+│  (Banking77 + PDF domain, 90% QA accuracy)                      │
+│                                                                 │
+│  Confidence >= 0.30 → route to category                         │
+│  Confidence <  0.30 → OOS → polite refusal                      │
+└──────────────────────┬──────────────────────────────────────────┘
+                       │  In-scope query + predicted category
+                       ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  RBAC — Blocked Question Check                                  │
+│  Checks query against role-specific blocked patterns            │
+│  e.g. Customer cannot ask about AML, fraud investigation, ATO   │
+└──────────────────────┬──────────────────────────────────────────┘
+                       │  Query cleared for retrieval
+                       ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Hybrid Retrieval — FAISS + BM25 (Alpha Fusion, alpha=0.7)      │
+│                                                                 │
+│  Dense (FAISS):  Fine-Tuned MiniLM cosine similarity            │
+│  Sparse (BM25):  BM25Okapi keyword matching                     │
+│                                                                 │
+│  Both normalised to [0,1] with min-max per query, then:         │
+│  blended_score = 0.7 * dense_norm + 0.3 * bm25_norm            │
+│                                                                 │
+│  Top-60 candidates retrieved (20 * 3 pool), Top-20 returned     │
+└──────────────────────┬──────────────────────────────────────────┘
+                       │  Top-20 candidate chunks
+                       ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  RBAC — Chunk-Level Filter                                      │
+│  Keeps only chunks from allowed categories + allowed documents  │
+│  for this user's role. Zero allowed chunks = access denied.     │
+└──────────────────────┬──────────────────────────────────────────┘
+                       │  Role-filtered chunks
+                       ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Cross-Encoder Reranker                                         │
+│  cross-encoder/ms-marco-MiniLM-L-6-v2                          │
+│  Scores each (query, chunk) pair directly → Top-3 returned      │
+└──────────────────────┬──────────────────────────────────────────┘
+                       │  Top-3 reranked chunks
+                       ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Personal Context Injection (Customer role only)                │
+│  Loads user's transactions + open disputes from CSV/DB          │
+│  Formatted as text and injected alongside document excerpts     │
+│  into the LLM prompt — not embedded in FAISS                    │
+└──────────────────────┬──────────────────────────────────────────┘
+                       │  Chunks + personal context
+                       ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Answer Generation — LLaMA-3.3-70B (OpenRouter)                 │
+│  V4 Prompt Strategy:                                            │
+│    Source 1: USER ACCOUNT DATA  → cite as [Source: your account data] │
+│    Source 2: DOCUMENT EXCERPTS  → cite as [Source: doc_name]   │
+│    Rule 1: Every factual sentence must end with a citation      │
+│    Rule 2: Empathy open → facts → warm close                    │
+│    Rule 3: Never mix sources — personal vs policy are separate  │
+│  + Post-processing citation injection (safety net)              │
+└──────────────────────┬──────────────────────────────────────────┘
+                       │  Grounded answer with citations
+                       ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  DeBERTa NLI Confidence Scorer                                  │
+│  cross-encoder/nli-deberta-v3-small                             │
+│                                                                 │
+│  Retrieval confidence  = mean(normalised FAISS scores)  × 40%   │
+│  Faithfulness score    = NLI entailment(chunk, answer)  × 60%   │
+│  Final score           = weighted sum                           │
+│                                                                 │
+│  HIGH  >= 0.70 → answer shown as-is                             │
+│  MED   >= 0.40 → transparency warning prepended                 │
+│  LOW   <  0.40 → strong caution + recommend human advisor       │
+└──────────────────────┬──────────────────────────────────────────┘
+                       │
+                       ▼
+              Grounded Financial Answer
+              Citations + Confidence Badge + Source Chips
+              Logged to index/query_log.jsonl
 ```
 
----
+### Key Production Design Decisions
 
-## Tech Stack
-
-- **Database:** DuckDB
-- **Data processing:** Pandas, NumPy
-- **Machine learning:** Scikit-learn (Logistic Regression, SelectKBest, StandardScaler)
-- **Explainability:** Linear SHAP attribution
-- **RAG:** ChromaDB, Sentence Transformers (all-MiniLM-L6-v2)
-- **LLM:** Google Gemini 2.5 Flash via google-genai SDK
-- **LLM evaluation:** bert-score, textstat
-- **Backend:** FastAPI, Uvicorn, Pydantic
-- **Frontend:** VanillaJS, Chart.js
-- **Visualization:** Matplotlib, SHAP
-
----
-
-## Important Notes
-
-MIMIC-IV is fully de-identified and no patient information is stored, transmitted, or displayed by this application. Gemini API calls only receive anonymized clinical feature summaries — no names, dates of birth, or identifiers of any kind.
-
-This system is a research prototype built for the DS 5500 capstone course. It is not intended for direct clinical use and has not been validated for deployment. Clinical adoption would require prospective validation on independent patient populations and regulatory approval.
-
----
-
-## References
-
-- MIMIC-IV: https://physionet.org/content/mimiciv/
-- Frizzell et al. (2017) — Prediction of 30-day all-cause readmissions in heart failure, JAMA Cardiology
-- Lundberg & Lee (2017) — A unified approach to interpreting model predictions, NeurIPS
-- Lewis et al. (2020) — Retrieval-Augmented Generation for knowledge-intensive NLP tasks, NeurIPS
-- Zhang et al. (2019) — BERTScore: Evaluating text generation with BERT, arXiv
-- Google Gemini 2.5 Flash: https://ai.google.dev
-- CMS Hospital Readmissions Reduction Program: https://www.cms.gov
+| Decision | Rationale |
+|----------|-----------|
+| Hybrid retrieval (α=0.7) | Dense retrieval alone misses keyword-specific queries (e.g. "payment declined" → missed `payment_failure_error_code_guide`). BM25 catches exact matches. Pre-validated at α=0.7 in offline experiments. |
+| Personal context via prompt injection | CSV/DB personal data (transactions, disputes) injected as text into LLM prompt — not embedded in FAISS. Keeps personal data separate from the document knowledge base by design. |
+| RBAC via category + blocklist | Document-level whitelists are brittle and require manual updates with every new document. Category-level access + topic blocklist scales with corpus growth. |
+| OOS threshold 0.30 | Initial threshold of 0.60 rejected legitimate but differently-phrased financial queries. Calibrated down after observing production query confidence distributions. |
+| CPU-only inference | All models forced to CPU (`device="cpu"`, `CUDA_VISIBLE_DEVICES=""`). Apple Silicon MPS backend caused instability with sentence-transformers. Parallelism disabled (`TOKENIZERS_PARALLELISM=false`) to prevent multiprocessing crashes. |
+| Incremental FAISS indexing | New PDFs trigger `update()` which checks MD5 hash against `manifest.json` — only new documents get chunked and embedded. Prevents full re-indexing on every document addition. |
